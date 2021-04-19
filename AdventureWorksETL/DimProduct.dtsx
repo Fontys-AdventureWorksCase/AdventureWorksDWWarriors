@@ -11,8 +11,8 @@
   DTS:LocaleID="1043"
   DTS:ObjectName="DimProduct"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{D28207FB-F7E7-4693-BCCA-FC4D077B2238}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{4E064E0D-05B1-422D-BB27-3EF50F09E883}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -231,11 +231,11 @@ join Production.ProductCategory cat on cat.ProductCategoryID=scat.ProductCategor
               </outputs>
             </component>
             <component
-              refId="Package\Extract Data From OLTP AdventureWorks\Lookup"
+              refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup"
+              name="Filter out existing"
               usesDispositions="true"
               version="6">
               <properties>
@@ -299,7 +299,7 @@ where [refTable].[ProductID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Connections[OleDbConnection]"
+                  refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Connections[OleDbConnection]"
                   connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
                   description="Connection manager used to access lookup data."
@@ -307,11 +307,11 @@ where [refTable].[ProductID] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input]"
+                  refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input].Columns[ProductID]"
+                      refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input].Columns[ProductID]"
                       cachedDataType="i4"
                       cachedName="ProductID"
                       lineageId="Package\Extract Data From OLTP AdventureWorks\Extract Product data.Outputs[OLE DB Source Output].Columns[ProductID]">
@@ -332,38 +332,38 @@ where [refTable].[ProductID] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Match Output]"
+                  refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup No Match Output]"
+                  refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Error Output]"
+                  refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -530,10 +530,10 @@ where [refTable].[ProductID] = ?</property>
               refId="Package\Extract Data From OLTP AdventureWorks.Paths[Lookup No Match Output]"
               endId="Package\Extract Data From OLTP AdventureWorks\SQL Server Destination.Inputs[SQL Server Destination Input]"
               name="Lookup No Match Output"
-              startId="Package\Extract Data From OLTP AdventureWorks\Lookup.Outputs[Lookup No Match Output]" />
+              startId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Extract Data From OLTP AdventureWorks.Paths[OLE DB Source Output]"
-              endId="Package\Extract Data From OLTP AdventureWorks\Lookup.Inputs[Lookup Input]"
+              endId="Package\Extract Data From OLTP AdventureWorks\Filter out existing.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Extract Data From OLTP AdventureWorks\Extract Product data.Outputs[OLE DB Source Output]" />
           </paths>
@@ -566,9 +566,9 @@ where [refTable].[ProductID] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="113,42"
-          Id="Package\Extract Data From OLTP AdventureWorks\Lookup"
-          TopLeft="245,127" />
+          Size="160,42"
+          Id="Package\Extract Data From OLTP AdventureWorks\Filter out existing"
+          TopLeft="199,127" />
         <NodeLayout
           Size="175,42"
           Id="Package\Extract Data From OLTP AdventureWorks\Extract Product data"
@@ -576,33 +576,21 @@ where [refTable].[ProductID] = ?</property>
         <NodeLayout
           Size="200,42"
           Id="Package\Extract Data From OLTP AdventureWorks\SQL Server Destination"
-          TopLeft="196.875,231.5" />
+          TopLeft="174.875,228.5" />
         <EdgeLayout
           Id="Package\Extract Data From OLTP AdventureWorks.Paths[OLE DB Source Output]"
-          TopLeft="285.375,73.5">
+          TopLeft="282.1875,73.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="16.125,53.5"
+              EndConnector="0,53.5"
               Start="0,0"
-              End="16.125,46">
+              End="0,46">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.75"
-                    Point2="0,26.75"
-                    Point3="4,26.75" />
-                  <mssgle:LineSegment
-                    End="12.125,26.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="12.125,26.75"
-                    Point2="16.125,26.75"
-                    Point3="16.125,30.75" />
-                  <mssgle:LineSegment
-                    End="16.125,46" />
+                    End="0,46" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -613,25 +601,25 @@ where [refTable].[ProductID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Data From OLTP AdventureWorks.Paths[Lookup No Match Output]"
-          TopLeft="299.1875,169">
+          TopLeft="276.9375,169">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,62.5"
+              EndConnector="0,59.5"
               Start="0,0"
-              End="0,55">
+              End="0,52">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55" />
+                    End="0,52" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,21.6953125,111.6127734375,11.609375"
+              BoundingBox="-55.80638671875,20.1953125,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -639,7 +627,7 @@ where [refTable].[ProductID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Data From OLTP AdventureWorks\Lookup">
+    design-time-name="Package\Extract Data From OLTP AdventureWorks\Filter out existing">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
