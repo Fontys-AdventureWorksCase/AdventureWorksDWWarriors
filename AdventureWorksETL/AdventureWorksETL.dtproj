@@ -12,7 +12,7 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{d2ebc98d-12dc-4d0c-8c53-72b3c889673f}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">AdventureWorksETL</SSIS:Property>
@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-IMLUOESP5LO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="rQgLTRFu82M=" SSIS:IV="EfMH4zwK9wpvdUrqbjzRjg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">85b9WP/XH5SiSt3RF5u/Jre6T1/A89tDoK675a3HRG4tXEn+LjJ04hlsGhVAu8/osFbM9L34ZEb+DIO88w/qrPWn+BY/XD3oWLQbw71nx5wV2C8i47wob5Ib8rvwVJ1YEbhea2JL6EZ9E9MxVfs5AT8ApdH+BNi/0M+gZLk2/pyQrdouHPUx3O5P0p65W8ob</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4tHesL6j2kuHhX0yOKgDSAAAAAACAAAAAAAQZgAAAAEAACAAAAAh3JrW6K2oUAnBRwMqeZq8J7Fcf4JRS3U5czts1eDWuwAAAAAOgAAAAAIAACAAAADSp41oxIw4dh6otzVDaKs26BX7IA/hXNeXuADQAYyWBpAAAABk4XETFGen55ycGvApER7pTtADivnM/fWWMXcurt1Ut8nTwdhap+FHrHxpM1kaHxAbfE/lXNYQeNXx7WgL/djpBetTJ5LNKOfaJvczpQa0dMTSdPNyQgLyjt1f3FAMHx7AFJoEBQoAqE3+eOLfc0AgfXMZcxcjkYXhDtIYrsIFxQj449ofA9kT+vnEie0MmNBAAAAAKYYeyQPeHrJGncR6d63GR0zvV43BAqN+2GnfL+RaSAj0qcMtp6Qhl1jBfJ87ucxjAqI6yuM7kNkPSO69Vvza2Q==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -283,14 +283,14 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A02F55C8-C8DF-45AD-B2B9-901BD31A860A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5B41DE15-0EC4-4DBC-8AE0-A406E7D58673}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
@@ -300,14 +300,14 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{241993BD-F8B4-4897-B7F7-65323AEFA02B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B1BE2844-AB93-4887-B398-F2076DF2A5E0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
