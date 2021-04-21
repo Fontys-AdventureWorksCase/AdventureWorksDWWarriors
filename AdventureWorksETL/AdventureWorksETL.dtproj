@@ -26,12 +26,13 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-IMLUOESP5LO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4tHesL6j2kuHhX0yOKgDSAAAAAACAAAAAAAQZgAAAAEAACAAAAAh3JrW6K2oUAnBRwMqeZq8J7Fcf4JRS3U5czts1eDWuwAAAAAOgAAAAAIAACAAAADSp41oxIw4dh6otzVDaKs26BX7IA/hXNeXuADQAYyWBpAAAABk4XETFGen55ycGvApER7pTtADivnM/fWWMXcurt1Ut8nTwdhap+FHrHxpM1kaHxAbfE/lXNYQeNXx7WgL/djpBetTJ5LNKOfaJvczpQa0dMTSdPNyQgLyjt1f3FAMHx7AFJoEBQoAqE3+eOLfc0AgfXMZcxcjkYXhDtIYrsIFxQj449ofA9kT+vnEie0MmNBAAAAAKYYeyQPeHrJGncR6d63GR0zvV43BAqN+2GnfL+RaSAj0qcMtp6Qhl1jBfJ87ucxjAqI6yuM7kNkPSO69Vvza2Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaxXmnlcgXkaZiGCyBcu9kQAAAAACAAAAAAAQZgAAAAEAACAAAADaQu0iNSBf7Xg/16zCJ+cTqqVgHBzfHTRaJig+5No0ZQAAAAAOgAAAAAIAACAAAADuTxWADJABdE+DeZScYsdmOUtCQEZ9ACLRjpja/WpuVJAAAADboXeWaG1kCVyxO2JUS8FUF8RNHIybWG4nvFbfUKDzRHwp7SwnGH8gX1Vq9tXz7kf0bT3bZayLZKs3CSemfwKnMqfLqyrKAs1o9Ti0LWxwqIZHToDEVuWvM+Adf+W55q2aZKZ3tqcCQlJX3m2mEv/RPnAvj0EEh60LTuiOgozvmegmgeIU/p/xffHDQS0E4ONAAAAA9g01PpcwGR5c4cMj0R9M2JyTNHcq6lLqt1RlEJSRDWucH3jGYjkcLnaRWVJ3t8HwwU86ar95HkRST1U3CdKTbg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="TeunsPackage.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CustomerExtraction.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="localhost.AdventureWorks.conmgr" />
@@ -308,6 +309,23 @@
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="CustomerExtraction.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{CEBC1541-8C0F-48E0-9A03-4BFE3CA154BC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CustomerExtraction</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4ABE849D-2D28-43F5-8417-C7503294A02E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
