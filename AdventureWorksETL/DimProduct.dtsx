@@ -13,8 +13,8 @@
   DTS:ObjectName="DimProduct"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{0A9A9ECC-358A-4536-A9AE-78C8E40994AB}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{089241AA-8938-444D-A42C-083D3953815E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -595,7 +595,7 @@ where [refTable].[ProductID] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="163,42"
+          Size="235,42"
           Id="Package\Create Product Table if not exists"
           TopLeft="260,75" />
         <NodeLayout
@@ -604,13 +604,13 @@ where [refTable].[ProductID] = ?</property>
           TopLeft="219,200" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="341.5,117">
+          TopLeft="377.5,117">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="14.5,83"
+              EndConnector="-21.5,83"
               Start="0,0"
-              End="14.5,75.5">
+              End="-21.5,75.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -619,15 +619,15 @@ where [refTable].[ProductID] = ?</property>
                   <mssgle:CubicBezierSegment
                     Point1="0,37.5"
                     Point2="0,41.5"
-                    Point3="4,41.5" />
+                    Point3="-4,41.5" />
                   <mssgle:LineSegment
-                    End="10.5,41.5" />
+                    End="-17.5,41.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.5,41.5"
-                    Point2="14.5,41.5"
-                    Point3="14.5,45.5" />
+                    Point1="-17.5,41.5"
+                    Point2="-21.5,41.5"
+                    Point3="-21.5,45.5" />
                   <mssgle:LineSegment
-                    End="14.5,75.5" />
+                    End="-21.5,75.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

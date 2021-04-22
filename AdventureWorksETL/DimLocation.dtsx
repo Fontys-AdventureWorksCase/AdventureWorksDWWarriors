@@ -13,8 +13,8 @@
   DTS:ObjectName="DimAddress"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{88E76016-C4D7-43D4-98F4-0E46DE8B7F10}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{3A712FDA-5518-428A-BB11-5FA5C51A4CC3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_Location', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;CREATE TABLE [dbo].[Dim_Location](&#xA;&#x9;[LocationKey] [int] IDENTITY(1,1) NOT NULL,&#xA;&#x9;[City] [nvarchar](30) NOT NULL,&#xA;&#x9;[StateProvinceCode] [nvarchar](3) NOT NULL,&#xA;&#x9;[StateProvinceName] [nvarchar](50) NOT NULL,&#xA;&#x9;[CountryRegionCode] [nvarchar](3) NOT NULL,&#xA;&#x9;[CountryRegionName] [nvarchar](50) NOT NULL,&#xA;PRIMARY KEY CLUSTERED &#xA;([LocationKey] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, &#xA;ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) &#xA;ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_SalesPerson', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesPerson] (&#xA;    SalesPersonKey int IDENTITY(1,1) PRIMARY KEY,&#xA;    BusinessEntityId int NOT NULL UNIQUE,&#xA;    FirstName nvarchar(50),&#xA;    LastName nvarchar(50),&#xA;    Dob date,&#xA;    HireDate date,&#xA;    JobTitle nvarchar(50),&#xA;    Gender nchar(1),&#xA;    PersonType nchar(2),&#xA;)&#xA;&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -634,13 +634,13 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="274,42"
-          Id="Package\Extract Data From OLTP AdventureWorks"
-          TopLeft="376,245" />
-        <NodeLayout
           Size="163,42"
           Id="Package\Create Location Table if not exists"
           TopLeft="436,131" />
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Extract Data From OLTP AdventureWorks"
+          TopLeft="376,245" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="515.25,173">
