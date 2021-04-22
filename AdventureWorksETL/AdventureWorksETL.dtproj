@@ -26,13 +26,14 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-IMLUOESP5LO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="y+oKoWRvdDg=" SSIS:IV="SPPO9JwotbTy+dr/R9GTUg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">DMhcvKFz0+S5RMVB6Crb4tYS+tfaxR2ivfCN/HCg3uD5hNSMXXxJZLFWZqvEAyRfgZBfWcWnBgUtOC52nREOY6tVjHd0JJqBqmz273vOTl/zw2aEnkBtdY+e3q0wX7VWR0loHAYPnBtyCbHz+sdPrD6bFSln9Zi2p9VjzWe9QDpBI0hfh+uOLUYKVSvdIHky</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="VprfvbjZ6e8=" SSIS:IV="vSUS6KE86l8WXa1DJnRkTg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">lZHMtiJ3elcMgkDVX6AVjMcVu6pf4o50yd39ovMjP5x/3tDm6mNN0I4zNa4Q/owftoUjmFLA+dreqMCrV7346wZeHQv6MSwj2GOEGYMHwLBee2mG5RPoxemepDSkGt46hvJF/3a1th94Wx7qgxGI7JIFmaSad2Z5Bor2PFHCwOoCzDV1Tb+HdjvnIhfGJN4v</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimProduct.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimAddress.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SalespersonExtraction.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="localhost.AdventureWorks.conmgr" />
@@ -322,6 +323,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{96FDBEBA-1551-4F95-BB9A-BABE17B66408}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SalespersonExtraction.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{517998D7-DA39-436D-B260-0BEEEA08B948}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{22004FD8-8D70-4171-B77E-ACAAE094F1EB}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
