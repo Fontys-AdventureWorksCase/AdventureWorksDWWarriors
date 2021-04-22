@@ -13,20 +13,20 @@
   DTS:ObjectName="DimProduct"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{4574520E-5130-45AD-A4BD-249F6D6F1C74}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{0A9A9ECC-358A-4536-A9AE-78C8E40994AB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Execute SQL Task"
+      DTS:refId="Package\Create Product Table if not exists"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{341F894A-6C16-42FC-9CB9-C02798C97546}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task"
+      DTS:ObjectName="Create Product Table if not exists"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -577,7 +577,7 @@ where [refTable].[ProductID] = ?</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{F92631D0-61F5-44DA-B395-2FBFE04045AA}"
-      DTS:From="Package\Execute SQL Task"
+      DTS:From="Package\Create Product Table if not exists"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Extract Data From OLTP AdventureWorks" />
@@ -595,13 +595,13 @@ where [refTable].[ProductID] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="163,42"
+          Id="Package\Create Product Table if not exists"
+          TopLeft="260,75" />
+        <NodeLayout
           Size="274,42"
           Id="Package\Extract Data From OLTP AdventureWorks"
           TopLeft="219,200" />
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Execute SQL Task"
-          TopLeft="260,75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="341.5,117">
