@@ -3,6 +3,7 @@ BEGIN
 
 CREATE TABLE [dbo].[Dim_Location](
 	[LocationKey] [int] IDENTITY(1,1) NOT NULL,
+	[PostalCode] [nvarchar](15) NOT NULL,
 	[City] [nvarchar](30) NOT NULL,
 	[StateProvinceCode] [nvarchar](3) NOT NULL,
 	[StateProvinceName] [nvarchar](50) NOT NULL,

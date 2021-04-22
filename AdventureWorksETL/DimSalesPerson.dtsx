@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{95941E2E-A97A-4947-95B7-BCC206CC9C5C}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{666766BA-9633-47D5-806A-D55B74DEA6B8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -720,13 +720,13 @@ where [refTable].[BusinessEntityID] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="158,42"
-          Id="Package\SalesPerson task"
-          TopLeft="262.5,190.5" />
-        <NodeLayout
           Size="256,42"
           Id="Package\Create SalesPerson Table if not exists"
           TopLeft="213,68" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\SalesPerson task"
+          TopLeft="262.5,190.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="341.25,110">
@@ -800,7 +800,9 @@ where [refTable].[BusinessEntityID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
