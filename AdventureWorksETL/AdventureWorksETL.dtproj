@@ -12,7 +12,7 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithPassword" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{d2ebc98d-12dc-4d0c-8c53-72b3c889673f}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">AdventureWorksETL</SSIS:Property>
@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-IMLUOESP5LO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4tHesL6j2kuHhX0yOKgDSAAAAAACAAAAAAAQZgAAAAEAACAAAABpRCanI87wVte4zsHdMRzobW/mZ7u1HE/CfDfegJ221QAAAAAOgAAAAAIAACAAAAB3uV9AmG+sDip/qqZHD029wWvym04lKbfqEFIgaza9sZAAAACa+rQTPipKdfmYCen/XJjeygp34mEY6b+GonAhU4FLocLmgQv3456p52WGLGwom48noEAw73Mj5zFiRqY12cOZ5nq5yFy3gbVFEcUqZ6DIeW8kg33lHW3L0ngI2WIzxtK62WjhGqkRLlKpS458KowYSb3kx+8hjbYbE5DvBkF8hMKaDeQEEbeEk46H72WezCxAAAAAg9M5mU+SJPaX0rbtQA99nATNsAChXnRaUp5NEL70+HXHBNisCxUKxsLBqlR48zWueuEQcztTT1LOzeDafvTHwQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="y+oKoWRvdDg=" SSIS:IV="SPPO9JwotbTy+dr/R9GTUg==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">DMhcvKFz0+S5RMVB6Crb4tYS+tfaxR2ivfCN/HCg3uD5hNSMXXxJZLFWZqvEAyRfgZBfWcWnBgUtOC52nREOY6tVjHd0JJqBqmz273vOTl/zw2aEnkBtdY+e3q0wX7VWR0loHAYPnBtyCbHz+sdPrD6bFSln9Zi2p9VjzWe9QDpBI0hfh+uOLUYKVSvdIHky</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -284,14 +284,14 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5B41DE15-0EC4-4DBC-8AE0-A406E7D58673}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{76AF4957-BB1C-4219-81D0-932FA62B25D7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
@@ -301,14 +301,14 @@
                 <SSIS:Property SSIS:Name="Name">DimProduct</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D28207FB-F7E7-4693-BCCA-FC4D077B2238}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EC0201E4-DC8A-40B7-8738-7CD3DFAC6669}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
@@ -318,14 +318,14 @@
                 <SSIS:Property SSIS:Name="Name">DimAddress</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BFEACAC7-1DEC-46A6-ABF8-E4C40A3DAD11}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{96FDBEBA-1551-4F95-BB9A-BABE17B66408}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>

@@ -11,8 +11,9 @@
   DTS:LocaleID="1043"
   DTS:ObjectName="DimAddress"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{7E739A04-9FA0-4514-8C14-0176F9DC2F24}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{96FDBEBA-1551-4F95-BB9A-BABE17B66408}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -635,7 +636,9 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8,13.75,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -658,7 +661,7 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,23.4453125,111.6127734375,11.609375"
+              BoundingBox="-64.6750390625,21.25,129.350078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
