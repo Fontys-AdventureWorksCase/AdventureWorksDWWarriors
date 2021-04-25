@@ -12,11 +12,21 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{713D783E-2472-4C49-8701-34D0AAE4A0E4}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{58B98E27-693D-46CF-B0B5-DECDFDFA1DC6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[dimSalesTerritoryUpdate.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{836D2A13-9730-4ADF-B17A-453576747388}"
+      DTS:ObjectName="dimSalesTerritoryUpdate.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Administrator\source\repos\AdventureWorksDWWarriors\AdventureWorksETL\scripts\dimSalesTerritoryUpdate.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorks]"
       DTS:CreationName="OLEDB"
@@ -81,7 +91,8 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
-          SQLTask:SqlStatementSource="declare @key int&#xA;declare @territory VARCHAR(50)&#xA;declare @country varchar(50)&#xA;declare @continent varchar(50)&#xA;&#xA;DECLARE updatecur CURSOR FOR &#xA;SELECT st.TerritoryKey,st.Territory,st.Country,st.Continent&#xA;FROM Dim_SalesTerritory_stage_updates st&#xA;left join AdventureWorksDW.dbo.Dim_SalesTerritory dw on dw.TerritoryKey = st.TerritoryKey&#xA;WHERE &#xA; dw.Continent &lt;&gt; st.Continent&#xA;or  dw.Country &lt;&gt; st.Country&#xA;or  dw.Territory &lt;&gt; st.Territory&#xA;&#xA;&#xA;OPEN updatecur&#xA;&#xA;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;&#xA;-- Set the status for the cursor&#xA;WHILE @@FETCH_STATUS = 0  &#xA; &#xA;BEGIN  &#xA;&#x9;-- 4 - Begin the custom business logic&#xA;&#x9;-- * UPDATE WITH YOUR SPECIFIC CODE HERE *&#xA;   &#x9;Update AdventureWorksDW.dbo.Dim_SalesTerritory &#xA;&#x9;set Territory = @territory, Country = @country, Continent = @continent&#xA;&#x9;where TerritoryKey = @key;&#xA;&#xA;&#x9;-- 5 - Fetch the next record from the cursor&#xA; &#x9;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;END &#xA;&#xA;-- 6 - Close the cursor&#xA;CLOSE updatecur  &#xA;&#xA;-- 7 - Deallocate the cursor&#xA;DEALLOCATE updatecur " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="dimSalesTerritoryUpdate.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -954,33 +965,33 @@ where [refTable].[CountryRegionCode] = ?</property>
         <NodeLayout
           Size="163,42"
           Id="Package\Create or empty staging tables"
-          TopLeft="284,64" />
+          TopLeft="292,49" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="365.5,106">
+          TopLeft="373.5,91">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-139.5,40"
+              EndConnector="-147.5,55"
               Start="0,0"
-              End="-139.5,32.5">
+              End="-147.5,47.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16" />
+                    End="0,23.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="-4,20" />
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="-4,27.5" />
                   <mssgle:LineSegment
-                    End="-135.5,20" />
+                    End="-143.5,27.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-135.5,20"
-                    Point2="-139.5,20"
-                    Point3="-139.5,24" />
+                    Point1="-143.5,27.5"
+                    Point2="-147.5,27.5"
+                    Point3="-147.5,31.5" />
                   <mssgle:LineSegment
-                    End="-139.5,32.5" />
+                    End="-147.5,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
