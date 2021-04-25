@@ -12,8 +12,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="24"
-  DTS:VersionGUID="{6745343E-291D-4A20-A52F-7FCDEC77BDA4}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{3E0D93DC-BA41-40C3-8D87-5F1ABDD3790C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -85,8 +85,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
-          SQLTask:SqlStmtSourceType="FileConnection"
-          SQLTask:SqlStatementSource="dimSalesTerritoryUpdate.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="declare @key int&#xA;declare @territory VARCHAR(50)&#xA;declare @country varchar(50)&#xA;declare @continent varchar(50)&#xA;&#xA;DECLARE updatecur CURSOR FOR &#xA;SELECT st.TerritoryKey,st.Territory,st.Country,st.Continent&#xA;FROM Dim_SalesTerritory_stage_updates st&#xA;left join AdventureWorksDW.dbo.Dim_SalesTerritory dw on dw.TerritoryKey = st.TerritoryKey&#xA;WHERE &#xA; dw.Continent &lt;&gt; st.Continent&#xA;or  dw.Country &lt;&gt; st.Country&#xA;or  dw.Territory &lt;&gt; st.Territory&#xA;&#xA;&#xA;OPEN updatecur&#xA;&#xA;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;&#xA;-- Set the status for the cursor&#xA;WHILE @@FETCH_STATUS = 0  &#xA; &#xA;BEGIN  &#xA;&#x9;-- 4 - Begin the custom business logic&#xA;&#x9;-- * UPDATE WITH YOUR SPECIFIC CODE HERE *&#xA;   &#x9;Update AdventureWorksDW.dbo.Dim_SalesTerritory &#xA;&#x9;set Territory = @territory, Country = @country, Continent = @continent&#xA;&#x9;where TerritoryKey = @key;&#xA;&#xA;&#x9;-- 5 - Fetch the next record from the cursor&#xA; &#x9;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;END &#xA;&#xA;-- 6 - Close the cursor&#xA;CLOSE updatecur  &#xA;&#xA;-- 7 - Deallocate the cursor&#xA;DEALLOCATE updatecur " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -103,8 +102,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
-          SQLTask:SqlStmtSourceType="FileConnection"
-          SQLTask:SqlStatementSource="dimSalesTerritoryPrepare.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="&#xA;use StagingDW;&#xA;&#xA;IF OBJECT_ID(N'dbo.Dim_SalesTerritory_stage_updates', N'U') IS NULL BEGIN&#xA;CREATE TABLE [dbo].[Dim_SalesTerritory_stage_updates](&#xA;&#x9;[TerritoryKey] [int] NOT NULL,&#xA;&#x9;[Territory] [nvarchar](50) NOT NULL,&#xA;&#x9;[Country] [nvarchar](50) NOT NULL,&#xA;&#x9;[Continent] [nvarchar](50) NOT NULL&#xA;)&#xA;end;&#xA;&#xA;&#xA;truncate table [dbo].[Dim_SalesTerritory_stage_updates];&#xA;&#xA;use AdventureWorksDw;&#xA;&#xA;&#xA;IF OBJECT_ID(N'dbo.Dim_SalesTerritory', N'U') IS NULL BEGIN&#xA;&#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesTerritory](&#xA;&#x9;[TerritoryKey] [int] NOT NULL,&#xA;&#x9;[Territory] [nvarchar](50) NOT NULL,&#xA;&#x9;[Country] [nvarchar](50) NOT NULL,&#xA;&#x9;[Continent] [nvarchar](50) NOT NULL,&#xA; CONSTRAINT [PK_Dim_SalesTerritory] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[TerritoryKey] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;&#xA;end;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -977,16 +975,16 @@ where [refTable].[CountryRegionCode] = ?</property>
         <NodeLayout
           Size="163,42"
           Id="Package\Prepare tables"
-          TopLeft="292,49" />
+          TopLeft="291,49" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="373.5,91">
+          TopLeft="372.5,91">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-147.5,55"
+              EndConnector="-146.5,55"
               Start="0,0"
-              End="-147.5,47.5">
+              End="-146.5,47.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -997,13 +995,13 @@ where [refTable].[CountryRegionCode] = ?</property>
                     Point2="0,27.5"
                     Point3="-4,27.5" />
                   <mssgle:LineSegment
-                    End="-143.5,27.5" />
+                    End="-142.5,27.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-143.5,27.5"
-                    Point2="-147.5,27.5"
-                    Point3="-147.5,31.5" />
+                    Point1="-142.5,27.5"
+                    Point2="-146.5,27.5"
+                    Point3="-146.5,31.5" />
                   <mssgle:LineSegment
-                    End="-147.5,47.5" />
+                    End="-146.5,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
