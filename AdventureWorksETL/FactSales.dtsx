@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{FDB3E355-CE69-4198-9190-4659752248E8}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{EBBF69C7-7074-48E2-B92B-48C3C9E3909D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -892,129 +892,6 @@ where [refTable].[SalesOrderID] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Extract Sales Data\Log errors"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Log errors"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[logger]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Extract Sales Data\Log errors.Connections[OleDbConnection]"
-                  connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Error Output].Columns[ErrorCode]" />
-                    <inputColumn
-                      refId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Error Output].Columns[ErrorColumn]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="i4"
-                      name="ErrorCode" />
-                    <externalMetadataColumn
-                      refId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="i4"
-                      name="ErrorColumn" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Extract Sales Data\Log errors.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Extract Sales Data\Log errors.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Extract Sales Data\Log errors.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Extract Sales Data\Log errors.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Extract Sales Data\Log errors.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Extract Sales Data\Lookup BillTo Location key"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -1594,7 +1471,7 @@ where [refTable].[BusinessEntityId] = ?</property>
                 <output
                   refId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="RedirectRow"
+                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Extract Sales Data\Lookup SalesPerson Key.Inputs[Lookup Input]">
@@ -2286,11 +2163,6 @@ where [refTable].[AddressID] = ?</property>
               name="Derived Column Output"
               startId="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales).Outputs[Derived Column Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Error Output]"
-              endId="Package\Extract Sales Data\Log errors.Inputs[OLE DB Destination Input]"
-              name="Lookup Error Output"
-              startId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Error Output]" />
-            <path
               refId="Package\Extract Sales Data.Paths[Lookup Match Output]"
               endId="Package\Extract Sales Data\Lookup SalesPerson Key.Inputs[Lookup Input]"
               name="Lookup Match Output"
@@ -2413,6 +2285,18 @@ where [refTable].[AddressID] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="212,42"
+          Id="Package\Extract Sales Data\Lookup ShipTo Location Key"
+          TopLeft="824.083333333333,243.916666666667" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Extract Sales Data\Lookup BillTo PostalCode"
+          TopLeft="43,258" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Extract Sales Data\Extract Product Cost"
+          TopLeft="672,9.5" />
+        <NodeLayout
           Size="204,42"
           Id="Package\Extract Sales Data\Lookup ShipTo PostalCode"
           TopLeft="579.333333333333,253.166666666667" />
@@ -2421,9 +2305,17 @@ where [refTable].[AddressID] = ?</property>
           Id="Package\Extract Sales Data\Lookup Product Key"
           TopLeft="48.0000000000001,151.75" />
         <NodeLayout
-          Size="127,42"
-          Id="Package\Extract Sales Data\Log errors"
-          TopLeft="647,154" />
+          Size="225,42"
+          Id="Package\Extract Sales Data\Extract SalesOrderHeader Data"
+          TopLeft="336.75,10.5" />
+        <NodeLayout
+          Size="397,42"
+          Id="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales)"
+          TopLeft="50,82" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Extract Sales Data\Extract SalesOrderDetail Data"
+          TopLeft="51.25,7.5" />
         <NodeLayout
           Size="171,42"
           Id="Package\Extract Sales Data\OLE DB Destination"
@@ -2436,26 +2328,6 @@ where [refTable].[AddressID] = ?</property>
           Size="204,42"
           Id="Package\Extract Sales Data\Lookup BillTo Location key"
           TopLeft="333.333333333334,254.333333333333" />
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Extract Sales Data\Extract Product Cost"
-          TopLeft="672,9.5" />
-        <NodeLayout
-          Size="225,42"
-          Id="Package\Extract Sales Data\Extract SalesOrderHeader Data"
-          TopLeft="336.75,10.5" />
-        <NodeLayout
-          Size="212,42"
-          Id="Package\Extract Sales Data\Lookup ShipTo Location Key"
-          TopLeft="824.083333333333,243.916666666667" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Extract Sales Data\Lookup BillTo PostalCode"
-          TopLeft="43,258" />
-        <NodeLayout
-          Size="218,42"
-          Id="Package\Extract Sales Data\Extract SalesOrderDetail Data"
-          TopLeft="51.25,7.5" />
         <NodeLayout
           Size="160,42"
           Id="Package\Extract Sales Data\Create Date Keys"
@@ -2480,6 +2352,66 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output7]"
+          TopLeft="759.5,51.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-511,30.5"
+              Start="0,0"
+              End="-511,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.25"
+                    Point2="0,15.25"
+                    Point3="-4,15.25" />
+                  <mssgle:LineSegment
+                    End="-507,15.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-507,15.25"
+                    Point2="-511,15.25"
+                    Point3="-511,19.25" />
+                  <mssgle:LineSegment
+                    End="-511,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-303.69138671875,20.25,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output6]"
+          TopLeft="561.75,31">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.25,0"
+              Start="0,0"
+              End="102.75,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="102.75,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.18361328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2663,116 +2595,6 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Lookup Error Output]"
-          TopLeft="537.75,175">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="109.25,0"
-              Start="0,0"
-              End="101.75,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="101.75,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="5.00861328124999,5,91.7327734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Derived Column Output]"
-          TopLeft="125.791666666667,387.916666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,34.8333333333334"
-              Start="0,0"
-              End="0,27.3333333333334">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.3333333333334" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="397,42"
-          Id="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales)"
-          TopLeft="50,82" />
-        <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Lookup Match Output6]"
-          TopLeft="561.75,31">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="110.25,0"
-              Start="0,0"
-              End="102.75,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="102.75,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="3.18361328125,5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Lookup Match Output7]"
-          TopLeft="759.5,51.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-511,30.5"
-              Start="0,0"
-              End="-511,23">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.25"
-                    Point2="0,15.25"
-                    Point3="-4,15.25" />
-                  <mssgle:LineSegment
-                    End="-507,15.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-507,15.25"
-                    Point2="-511,15.25"
-                    Point3="-511,19.25" />
-                  <mssgle:LineSegment
-                    End="-511,23" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-303.69138671875,20.25,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output1]"
           TopLeft="248.5,124">
           <EdgeLayout.Curve>
@@ -2806,11 +2628,33 @@ where [refTable].[AddressID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Derived Column Output]"
+          TopLeft="125.791666666667,387.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.8333333333334"
+              Start="0,0"
+              End="0,27.3333333333334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3333333333334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup SalesPerson Key">
+    design-time-name="Package\Extract Sales Data\Lookup ShipTo Location Key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -2820,7 +2664,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Dim_SalesPerson]</Value>
+          type="q3:string">[dbo].[Dim_Location]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -2833,7 +2677,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
+    design-time-name="Package\Extract Sales Data\Lookup BillTo PostalCode">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -2843,7 +2687,53 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Dim_Location]</Value>
+          type="q3:string">[Person].[Address]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Extract Product Cost">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Production].[Product]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Person].[Address]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -2867,6 +2757,29 @@ where [refTable].[AddressID] = ?</property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[dbo].[Dim_Product]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Extract SalesOrderHeader Data">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Sales].[SalesOrderHeader]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -2905,17 +2818,17 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
+    design-time-name="Package\Extract Sales Data\Lookup SalesPerson Key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[Person].[Address]</Value>
+          type="q3:string">[dbo].[Dim_SalesPerson]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -2928,30 +2841,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup BillTo PostalCode">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Person].[Address]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup ShipTo Location Key">
+    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -2970,65 +2860,6 @@ where [refTable].[AddressID] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Extract SalesOrderHeader Data">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Sales].[SalesOrderHeader]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Extract Product Cost">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Production].[Product]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Log errors">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
