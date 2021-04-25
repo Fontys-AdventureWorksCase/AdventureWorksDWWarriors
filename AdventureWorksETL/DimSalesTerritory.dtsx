@@ -12,11 +12,22 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{D0297EF5-5F59-47FD-9AD4-37EF463AE20F}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{6745343E-291D-4A20-A52F-7FCDEC77BDA4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[dimSalesTerritoryPrepare.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{EF7892B3-7ED9-43F9-9A6C-016D6926437A}"
+      DTS:ObjectName="dimSalesTerritoryPrepare.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\Administrator\source\repos\AdventureWorksDWWarriors\AdventureWorksETL\scripts\dimSalesTerritoryPrepare.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[dimSalesTerritoryUpdate.sql]"
       DTS:CreationName="FILE"
@@ -61,23 +72,6 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Create or empty staging tables"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{A00E5F7D-A8BE-4E62-8E35-B2A3F5C6B2E7}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Create or empty staging tables"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
-          SQLTask:SqlStatementSource="&#xA;IF OBJECT_ID(N'dbo.Dim_SalesTerritory_stage_updates', N'U') IS NULL BEGIN&#xA;CREATE TABLE [dbo].[Dim_SalesTerritory_stage_updates](&#xA;&#x9;[TerritoryKey] [int] NOT NULL,&#xA;&#x9;[Territory] [nvarchar](50) NOT NULL,&#xA;&#x9;[Country] [nvarchar](50) NOT NULL,&#xA;&#x9;[Continent] [nvarchar](50) NOT NULL&#xA;)&#xA;end;&#xA;&#xA;truncate table [dbo].[Dim_SalesTerritory_stage_updates];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\Load"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -93,6 +87,24 @@
           SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
           SQLTask:SqlStmtSourceType="FileConnection"
           SQLTask:SqlStatementSource="dimSalesTerritoryUpdate.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A00E5F7D-A8BE-4E62-8E35-B2A3F5C6B2E7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="dimSalesTerritoryPrepare.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -933,7 +945,7 @@ where [refTable].[CountryRegionCode] = ?</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{DB084421-F7DD-4431-8312-0A8F278925C6}"
-      DTS:From="Package\Create or empty staging tables"
+      DTS:From="Package\Prepare tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Territory Extract and Transform" />
@@ -964,7 +976,7 @@ where [refTable].[CountryRegionCode] = ?</property>
           TopLeft="112,146" />
         <NodeLayout
           Size="163,42"
-          Id="Package\Create or empty staging tables"
+          Id="Package\Prepare tables"
           TopLeft="292,49" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"

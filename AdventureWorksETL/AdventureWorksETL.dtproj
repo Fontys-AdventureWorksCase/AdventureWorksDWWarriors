@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WIN-IMLUOESP5LO</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="x8xssGboa08=" SSIS:IV="UgTAz1nIc3V0+sBr+em4Ug==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">vo0RRxC3SmYjH7w45y427KnVgb2v4EWVpIy2NU8ZSGlFyD/eqNcUpv1CeXWQlLRlPfj53apWi09T3oLVmPF4vZAaWYzq4BtMQgKAzoXmyDlV51b2NJOqw4eftxoeOqUYOlcs/ahCKYxro1hxBabaEBSRR8G0MDEU6M7pLVP6e5xRcfO4HkLD+E2u12TcDNGr</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1" SSIS:Salt="as4R/ddx9ro=" SSIS:IV="qFRxeSww9DMsv91mtGUE1g==" SSIS:Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc">p0PoVfxBdfChzSrxSUzNYsdOC6kvln4L6Nwdv+5wlvuGyO9BgFcOR5BHDA8P218oziWO/tl/0Qdkjd0v0YshB63J/nbXnj3P+rfKofR5+oveBeZop1BAXOiynomFHYJRQQJEbViCy3/UYK1XxzSOhg+2nLZuVBLibqcYpluLcGtqWYmFqcnnyOermXUmDHv0</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -354,16 +354,46 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">20</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">24</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{58B98E27-693D-46CF-B0B5-DECDFDFA1DC6}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6745343E-291D-4A20-A52F-7FCDEC77BDA4}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">2</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.dimSalesTerritoryPrepare.sql.ConnectByProxy">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.dimSalesTerritoryPrepare.sql.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Users\Administrator\source\repos\AdventureWorksDWWarriors\AdventureWorksETL\scripts\dimSalesTerritoryPrepare.sql</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.dimSalesTerritoryUpdate.sql.ConnectByProxy">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
@@ -756,7 +786,12 @@
     </Manifest>
   </DeploymentModelSpecificContent>
   <ControlFlowParts />
-  <Miscellaneous />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>dimSalesTerritoryUpdate.sql</Name>
+      <FullPath>dimSalesTerritoryUpdate.sql</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
