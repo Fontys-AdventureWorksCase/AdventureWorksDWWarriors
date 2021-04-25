@@ -12,9 +12,10 @@ CREATE TABLE [dbo].[Dim_SalesPerson] (
     JobTitle nvarchar(50),
     Gender nchar(1),
     PersonType nchar(2),
-)
+);
 
-
+INSERT INTO [dbo].[Dim_SalesPerson](BusinessEntityId, FirstName, LastName, Dob, HireDate, JobTitle, Gender, PersonType)
+VALUES ('-1', 'NA', 'No Salesperson', '1900-01-01', '1900-01-01', 'For online sales', 'M', 'SP');
 
 END;
 GO

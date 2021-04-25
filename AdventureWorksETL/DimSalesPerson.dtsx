@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{666766BA-9633-47D5-806A-D55B74DEA6B8}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{DF49EDE9-17C7-4E3D-974F-AC41BE09DB74}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_SalesPerson', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE Dim_SalesPerson (&#xA;    SalesPersonKey int IDENTITY(1,1) PRIMARY KEY,&#xA;    BusinessEntityId int NOT NULL UNIQUE,&#xA;    FirstName nvarchar(50),&#xA;    LastName nvarchar(50),&#xA;    Dob date,&#xA;    HireDate date,&#xA;    JobTitle nvarchar(50),&#xA;    Gender nchar(1),&#xA;    PersonType nchar(2),&#xA;);&#xA;&#xA;&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_SalesPerson', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesPerson] (&#xA;    SalesPersonKey int IDENTITY(1,1) PRIMARY KEY,&#xA;    BusinessEntityId int NOT NULL UNIQUE,&#xA;    FirstName nvarchar(50),&#xA;    LastName nvarchar(50),&#xA;    Dob date,&#xA;    HireDate date,&#xA;    JobTitle nvarchar(50),&#xA;    Gender nchar(1),&#xA;    PersonType nchar(2),&#xA;);&#xA;&#xA;INSERT INTO [dbo].[Dim_SalesPerson](BusinessEntityId, FirstName, LastName, Dob, HireDate, JobTitle, Gender, PersonType)&#xA;VALUES ('-1', 'NA', 'No Salesperson', '1900-01-01', '1900-01-01', 'For online sales', 'M', 'SP');&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
