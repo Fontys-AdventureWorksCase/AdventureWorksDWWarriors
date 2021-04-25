@@ -5,22 +5,22 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-IMLUOESP5LO"
   DTS:CreatorName="WIN-IMLUOESP5LO\Administrator"
-  DTS:DTSID="{3D49B4D4-5AEE-46C5-BCD1-61D4C38AFE54}"
+  DTS:DTSID="{D180C994-B521-4996-B617-976B2C9D73FB}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.157"
   DTS:LocaleID="1043"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="DimSalesTerritory"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{3E0D93DC-BA41-40C3-8D87-5F1ABDD3790C}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{D61CBC78-6C76-40B4-9694-2DEC8E425958}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[dimSalesTerritoryPrepare.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{EF7892B3-7ED9-43F9-9A6C-016D6926437A}"
+      DTS:DTSID="{A850F288-8CA6-4D32-8808-8015F60DFE03}"
       DTS:ObjectName="dimSalesTerritoryPrepare.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -31,7 +31,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[dimSalesTerritoryUpdate.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{836D2A13-9730-4ADF-B17A-453576747388}"
+      DTS:DTSID="{4EFE7B6D-2ED0-4097-A8B2-00D636A411DF}"
       DTS:ObjectName="dimSalesTerritoryUpdate.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -41,7 +41,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorks]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{CC6BC47E-F667-49A9-930D-6B6BA945E6AC}"
+      DTS:DTSID="{424DD2D1-1FF2-425B-B475-EA63AE381D00}"
       DTS:ObjectName="LocalHost.AdventureWorks">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -51,7 +51,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorksDW]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{FE5E5383-FAF2-4BAE-8E76-B27ED701A9E3}"
+      DTS:DTSID="{572599B3-9213-4ED5-AC93-31B03BD80CF0}"
       DTS:ObjectName="LocalHost.AdventureWorksDW">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -61,7 +61,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.StagingDW]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
+      DTS:DTSID="{83011676-59FC-436F-88F9-6424C23D72CE}"
       DTS:ObjectName="LocalHost.StagingDW">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -75,7 +75,7 @@
       DTS:refId="Package\Load"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{BEA62D08-5637-4BBF-88F6-F81AF74F62E0}"
+      DTS:DTSID="{2E8E6E45-73F6-4D21-BDE8-64FC96DB6A47}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Load"
@@ -84,7 +84,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
+          SQLTask:Connection="{83011676-59FC-436F-88F9-6424C23D72CE}"
           SQLTask:SqlStatementSource="declare @key int&#xA;declare @territory VARCHAR(50)&#xA;declare @country varchar(50)&#xA;declare @continent varchar(50)&#xA;&#xA;DECLARE updatecur CURSOR FOR &#xA;SELECT st.TerritoryKey,st.Territory,st.Country,st.Continent&#xA;FROM Dim_SalesTerritory_stage_updates st&#xA;left join AdventureWorksDW.dbo.Dim_SalesTerritory dw on dw.TerritoryKey = st.TerritoryKey&#xA;WHERE &#xA; dw.Continent &lt;&gt; st.Continent&#xA;or  dw.Country &lt;&gt; st.Country&#xA;or  dw.Territory &lt;&gt; st.Territory&#xA;&#xA;&#xA;OPEN updatecur&#xA;&#xA;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;&#xA;-- Set the status for the cursor&#xA;WHILE @@FETCH_STATUS = 0  &#xA; &#xA;BEGIN  &#xA;&#x9;-- 4 - Begin the custom business logic&#xA;&#x9;-- * UPDATE WITH YOUR SPECIFIC CODE HERE *&#xA;   &#x9;Update AdventureWorksDW.dbo.Dim_SalesTerritory &#xA;&#x9;set Territory = @territory, Country = @country, Continent = @continent&#xA;&#x9;where TerritoryKey = @key;&#xA;&#xA;&#x9;-- 5 - Fetch the next record from the cursor&#xA; &#x9;FETCH NEXT FROM updatecur INTO @key,@territory,@country,@continent; &#xA;END &#xA;&#xA;-- 6 - Close the cursor&#xA;CLOSE updatecur  &#xA;&#xA;-- 7 - Deallocate the cursor&#xA;DEALLOCATE updatecur " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -92,7 +92,7 @@
       DTS:refId="Package\Prepare tables"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{A00E5F7D-A8BE-4E62-8E35-B2A3F5C6B2E7}"
+      DTS:DTSID="{3DD47314-AA68-4595-8405-FD6226B7B275}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Prepare tables"
@@ -101,7 +101,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{783F677E-07E3-4D6C-998E-6E25D02DC6CF}"
+          SQLTask:Connection="{83011676-59FC-436F-88F9-6424C23D72CE}"
           SQLTask:SqlStatementSource="&#xA;use StagingDW;&#xA;&#xA;IF OBJECT_ID(N'dbo.Dim_SalesTerritory_stage_updates', N'U') IS NULL BEGIN&#xA;CREATE TABLE [dbo].[Dim_SalesTerritory_stage_updates](&#xA;&#x9;[TerritoryKey] [int] NOT NULL,&#xA;&#x9;[Territory] [nvarchar](50) NOT NULL,&#xA;&#x9;[Country] [nvarchar](50) NOT NULL,&#xA;&#x9;[Continent] [nvarchar](50) NOT NULL&#xA;)&#xA;end;&#xA;&#xA;&#xA;truncate table [dbo].[Dim_SalesTerritory_stage_updates];&#xA;&#xA;use AdventureWorksDw;&#xA;&#xA;&#xA;IF OBJECT_ID(N'dbo.Dim_SalesTerritory', N'U') IS NULL BEGIN&#xA;&#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesTerritory](&#xA;&#x9;[TerritoryKey] [int] NOT NULL,&#xA;&#x9;[Territory] [nvarchar](50) NOT NULL,&#xA;&#x9;[Country] [nvarchar](50) NOT NULL,&#xA;&#x9;[Continent] [nvarchar](50) NOT NULL,&#xA; CONSTRAINT [PK_Dim_SalesTerritory] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[TerritoryKey] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;&#xA;end;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -109,7 +109,7 @@
       DTS:refId="Package\Territory Extract and Transform"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{5869AE65-9003-4183-8944-2CAEAF37A12B}"
+      DTS:DTSID="{AE7B252B-187A-4931-A23C-77C8E32D33DE}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Territory Extract and Transform"
@@ -942,7 +942,7 @@ where [refTable].[CountryRegionCode] = ?</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{DB084421-F7DD-4431-8312-0A8F278925C6}"
+      DTS:DTSID="{331A919F-058B-481A-A2B2-D6A0CBAA77E6}"
       DTS:From="Package\Prepare tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -950,7 +950,7 @@ where [refTable].[CountryRegionCode] = ?</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{98F5F46C-43EB-414D-8348-B019467DB5F5}"
+      DTS:DTSID="{36220D43-272F-427B-B346-4B26C05CFF01}"
       DTS:From="Package\Territory Extract and Transform"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -969,13 +969,17 @@ where [refTable].[CountryRegionCode] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="228,42"
-          Id="Package\Territory Extract and Transform"
-          TopLeft="112,146" />
+          Size="163,42"
+          Id="Package\Load"
+          TopLeft="137,255" />
         <NodeLayout
           Size="163,42"
           Id="Package\Prepare tables"
           TopLeft="291,49" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Territory Extract and Transform"
+          TopLeft="112,146" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="372.5,91">
@@ -1010,10 +1014,6 @@ where [refTable].[CountryRegionCode] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Load"
-          TopLeft="137,255" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="222.25,188">
@@ -1198,7 +1198,7 @@ where [refTable].[CountryRegionCode] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Extract Sales Territories">
+    design-time-name="Package\Territory Extract and Transform\Insert records">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1211,7 +1211,30 @@ where [refTable].[CountryRegionCode] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Insert records">
+    design-time-name="Package\Territory Extract and Transform\Enrich Country">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Person].[CountryRegion]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Territory Extract and Transform\staging updates">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1229,7 +1252,7 @@ where [refTable].[CountryRegionCode] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1239,7 +1262,7 @@ where [refTable].[CountryRegionCode] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1247,30 +1270,7 @@ where [refTable].[CountryRegionCode] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Enrich Country">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Person].[CountryRegion]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\staging updates">
+    design-time-name="Package\Territory Extract and Transform\Extract Sales Territories">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
