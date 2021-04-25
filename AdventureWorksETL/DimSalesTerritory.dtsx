@@ -12,8 +12,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{58B98E27-693D-46CF-B0B5-DECDFDFA1DC6}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{D0297EF5-5F59-47FD-9AD4-37EF463AE20F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -683,13 +683,6 @@ where [refTable].[CountryRegionCode] = ?</property>
                       externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Territory]"
                       lineageId="Package\Territory Extract and Transform\Extract Sales Territories.Outputs[OLE DB Source Output].Columns[Territory]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[CountryRegionCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CountryRegionCode"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
-                      lineageId="Package\Territory Extract and Transform\Extract Sales Territories.Outputs[OLE DB Source Output].Columns[CountryRegionCode]" />
-                    <inputColumn
                       refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Continent]"
                       cachedDataType="wstr"
                       cachedLength="50"
@@ -702,6 +695,13 @@ where [refTable].[CountryRegionCode] = ?</property>
                       cachedName="TerritoryID"
                       externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryKey]"
                       lineageId="Package\Territory Extract and Transform\Extract Sales Territories.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\Territory Extract and Transform\Enrich Country.Outputs[Lookup Match Output].Columns[Country]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1085,16 +1085,16 @@ where [refTable].[CountryRegionCode] = ?</property>
         <NodeLayout
           Size="148,42"
           Id="Package\Territory Extract and Transform\Enrich Country"
-          TopLeft="143,230" />
+          TopLeft="144,230" />
         <EdgeLayout
           Id="Package\Territory Extract and Transform.Paths[OLE DB Source Output]"
           TopLeft="166.5,96.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="33,133.5"
+              EndConnector="51.5,133.5"
               Start="0,0"
-              End="33,126">
+              End="51.5,126">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1105,13 +1105,13 @@ where [refTable].[CountryRegionCode] = ?</property>
                     Point2="0,66.75"
                     Point3="4,66.75" />
                   <mssgle:LineSegment
-                    End="29,66.75" />
+                    End="47.5,66.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="29,66.75"
-                    Point2="33,66.75"
-                    Point3="33,70.75" />
+                    Point1="47.5,66.75"
+                    Point2="51.5,66.75"
+                    Point3="51.5,70.75" />
                   <mssgle:LineSegment
-                    End="33,126" />
+                    End="51.5,126" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1122,25 +1122,25 @@ where [refTable].[CountryRegionCode] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Territory Extract and Transform.Paths[Lookup Match Output]"
-          TopLeft="291,253">
+          TopLeft="292,253">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="170,0"
+              EndConnector="169,0"
               Start="0,0"
-              End="162.5,0">
+              End="161.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="162.5,0" />
+                    End="161.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="33.05861328125,5,96.3827734375,11.609375"
+              BoundingBox="23.6899609375,5,114.120078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
