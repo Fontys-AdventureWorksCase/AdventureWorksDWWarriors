@@ -13,8 +13,8 @@
   DTS:ObjectName="DimAddress"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="24"
-  DTS:VersionGUID="{C1F904DE-C992-41BC-A19C-3FEF871F5631}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{0F686382-51F4-45EE-B580-8B73C8CC4625}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -706,6 +706,10 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="178,42"
+          Id="Package\Extract Data From OLTP AdventureWorks\Extract Location data"
+          TopLeft="197.875,31.5" />
+        <NodeLayout
           Size="171,42"
           Id="Package\Extract Data From OLTP AdventureWorks\OLE DB Destination"
           TopLeft="357,286" />
@@ -713,10 +717,6 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
           Size="160,42"
           Id="Package\Extract Data From OLTP AdventureWorks\Filter out existing"
           TopLeft="210,124.5" />
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Extract Data From OLTP AdventureWorks\Extract Location data"
-          TopLeft="197.875,31.5" />
         <EdgeLayout
           Id="Package\Extract Data From OLTP AdventureWorks.Paths[OLE DB Source Output]"
           TopLeft="288.4375,73.5">
@@ -736,9 +736,7 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,13.75,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -781,6 +779,19 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Extract Data From OLTP AdventureWorks\Extract Location data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Extract Data From OLTP AdventureWorks\OLE DB Destination">
     <Properties>
       <Property>
@@ -813,19 +824,6 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Data From OLTP AdventureWorks\Extract Location data">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
