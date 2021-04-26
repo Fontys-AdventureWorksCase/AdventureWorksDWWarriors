@@ -13,8 +13,8 @@
   DTS:ObjectName="DimAddress"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{0F686382-51F4-45EE-B580-8B73C8CC4625}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{39BA563E-3E39-4A4A-8B2E-E3FD51BED48C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -668,7 +668,7 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="163,42"
+          Size="239,42"
           Id="Package\Create Location Table if not exists"
           TopLeft="436,131" />
         <NodeLayout
@@ -677,18 +677,30 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
           TopLeft="376,245" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="515.25,173">
+          TopLeft="555.5,173">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,72"
+              EndConnector="-42.5,72"
               Start="0,0"
-              End="0,64.5">
+              End="-42.5,64.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,64.5" />
+                    End="0,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32"
+                    Point2="0,36"
+                    Point3="-4,36" />
+                  <mssgle:LineSegment
+                    End="-38.5,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.5,36"
+                    Point2="-42.5,36"
+                    Point3="-42.5,40" />
+                  <mssgle:LineSegment
+                    End="-42.5,64.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -736,7 +748,9 @@ where [refTable].[City] = ? and [refTable].[StateProvinceCode] = ? and [refTable
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
