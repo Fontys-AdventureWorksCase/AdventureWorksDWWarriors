@@ -4,7 +4,6 @@ BEGIN
 
 CREATE TABLE [dbo].[Fact_Sales] (
 	[SalesOrderID] [int] NOT NULL,
-	[SalesOrderDetailID] [int] NOT NULL,
 	[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),
 	[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),
 	[Customer] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),
