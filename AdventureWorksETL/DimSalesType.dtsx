@@ -1,0 +1,60 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/26/2021 12:37:27 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-IMLUOESP5LO"
+  DTS:CreatorName="WIN-IMLUOESP5LO\teun"
+  DTS:DTSID="{581E0B94-8D7F-426C-B879-5B34BA5FF478}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{30343197-2FC3-4F5B-B0D5-6A7EE9E163A3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BC4D6D0E-7DC2-4FD5-BED2-A70AF41199D3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_SalesType', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesType](&#xA;&#x9;[SalesTypeKey] [int] IDENTITY(1,1) PRIMARY KEY,&#xA;&#x9;[TypeName] [nvarchar](15) NOT NULL UNIQUE&#xA;)&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="442,42"
+          Id="Package\Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
+          TopLeft="85,22" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

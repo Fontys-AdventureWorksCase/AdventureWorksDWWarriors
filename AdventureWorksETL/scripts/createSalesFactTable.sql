@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Fact_Sales] (
 	[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
 	[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
 	[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
-	[OnlineOrderFlag] [bit] NOT NULL,
+	[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),
 	[OrderQty] [smallint] NULL,
 	[UnitPrice] [money] NULL,
 	[UnitPriceDiscount] [float] NULL,
