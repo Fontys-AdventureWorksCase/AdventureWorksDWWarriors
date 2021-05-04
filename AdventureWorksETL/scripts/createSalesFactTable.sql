@@ -18,6 +18,7 @@ CREATE TABLE [dbo].[Fact_Sales] (
 	[UnitPrice] [money] NULL,
 	[UnitPriceDiscount] [float] NULL,
 	[ProductCost] [money] NULL,
+	[Profit] [money] NULL,
 	[OrderTotalPrice] [money] NULL
 );
 

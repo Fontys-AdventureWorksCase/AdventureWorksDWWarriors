@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{43C72A13-FE83-4672-9C9A-514BBABE5A61}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{D49DE089-A91B-4673-92F8-345432B165FE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[OrderTotalPrice] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[Profit] [money] NULL,&#xA;&#x9;[OrderTotalPrice] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1020,6 +1020,20 @@ where [refTable].[SalesOrderID] = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">ModifiedDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[SubTotal]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[SubTotal]"
+                      name="SubTotal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SubTotal</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2241,12 +2255,6 @@ where [refTable].[AddressID] = ?</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderID]"
-                      cachedDataType="i4"
-                      cachedName="SalesOrderID"
-                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[SalesOrderID]" />
-                    <inputColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderQty]"
                       cachedDataType="i2"
                       cachedName="OrderQty"
@@ -2301,12 +2309,6 @@ where [refTable].[AddressID] = ?</property>
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipDateKey]"
                       lineageId="Package\Extract Sales Data\Create Date Keys.Outputs[Derived Column Output].Columns[ShipDateKey]" />
                     <inputColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesOrderDetailID]"
-                      cachedDataType="i4"
-                      cachedName="SalesOrderDetailID"
-                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]" />
-                    <inputColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductKey]"
                       cachedDataType="i4"
                       cachedName="ProductKey"
@@ -2318,18 +2320,6 @@ where [refTable].[AddressID] = ?</property>
                       cachedName="ProductCost"
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductCost]"
                       lineageId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output].Columns[ProductCost]" />
-                    <inputColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
-                      cachedDataType="i4"
-                      cachedName="CustomerID"
-                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CustomerID]" />
-                    <inputColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
-                      cachedDataType="i4"
-                      cachedName="TerritoryID"
-                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesTerritory]"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[TerritoryID]" />
                     <inputColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesTypeKey]"
                       cachedDataType="i4"
@@ -2343,24 +2333,32 @@ where [refTable].[AddressID] = ?</property>
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
                       lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[SpecialOfferID]" />
                     <inputColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineTotal]"
-                      cachedDataType="numeric"
-                      cachedName="LineTotal"
-                      cachedPrecision="38"
-                      cachedScale="6"
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubTotal]"
+                      cachedDataType="cy"
+                      cachedName="SubTotal"
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderTotalPrice]"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[LineTotal]" />
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[SubTotal]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesTerritoryKey]"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Profit]"
+                      cachedDataType="cy"
+                      cachedName="Profit"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                      lineageId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output].Columns[Profit]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
-                      dataType="i4"
-                      name="SalesOrderID" />
-                    <externalMetadataColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
-                      dataType="i4"
-                      name="SalesOrderDetailID" />
                     <externalMetadataColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
                       dataType="i4"
@@ -2406,14 +2404,6 @@ where [refTable].[AddressID] = ?</property>
                       dataType="cy"
                       name="ProductCost" />
                     <externalMetadataColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
-                      dataType="i4"
-                      name="Customer" />
-                    <externalMetadataColumn
-                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesTerritory]"
-                      dataType="i4"
-                      name="SalesTerritory" />
-                    <externalMetadataColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesTypeKey]"
                       dataType="i4"
                       name="SalesTypeKey" />
@@ -2425,6 +2415,18 @@ where [refTable].[AddressID] = ?</property>
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderTotalPrice]"
                       dataType="cy"
                       name="OrderTotalPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesTerritoryKey]"
+                      dataType="i4"
+                      name="SalesTerritoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
+                      dataType="cy"
+                      name="Profit" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3235,7 +3237,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
