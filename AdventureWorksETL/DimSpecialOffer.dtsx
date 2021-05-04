@@ -1,10 +1,11 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="4/29/2021 4:18:04 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-IMLUOESP5LO"
   DTS:CreatorName="WIN-IMLUOESP5LO\Administrator"
+  DTS:DelayValidation="True"
   DTS:DTSID="{74793CF3-2D24-43B5-8938-F2D8D74E3495}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.157"
@@ -12,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{D99ED043-4CF9-405B-8843-310C4AC8473D}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{92A1F8AA-D6B2-4658-A7FB-9E30E3FC857A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -148,8 +149,8 @@ where [refTable].[SpecialOfferKey] = ?</property>
               <connections>
                 <connection
                   refId="Package\Territory Extract and Transform\Already Exists?.Connections[OleDbConnection]"
-                  connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:invalid"
-                  connectionManagerRefId="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:invalid"
+                  connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -331,8 +332,8 @@ where [refTable].[SpecialOfferKey] = ?</property>
               <connections>
                 <connection
                   refId="Package\Territory Extract and Transform\Extract Special Offers.Connections[OleDbConnection]"
-                  connectionManagerID="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:invalid"
-                  connectionManagerRefId="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:invalid"
+                  connectionManagerID="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorks]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -536,8 +537,8 @@ where [refTable].[SpecialOfferKey] = ?</property>
               <connections>
                 <connection
                   refId="Package\Territory Extract and Transform\Insert records.Connections[OleDbConnection]"
-                  connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:invalid"
-                  connectionManagerRefId="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:invalid"
+                  connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -904,21 +905,21 @@ where [refTable].[SpecialOfferKey] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="180,42"
+          Id="Package\Territory Extract and Transform\Extract Special Offers"
+          TopLeft="91.5,54.5" />
+        <NodeLayout
           Size="171,42"
           Id="Package\Territory Extract and Transform\Insert records"
           TopLeft="278.5,394.5" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Territory Extract and Transform\staging updates"
-          TopLeft="567,398" />
         <NodeLayout
           Size="149,42"
           Id="Package\Territory Extract and Transform\Already Exists?"
           TopLeft="461,234" />
         <NodeLayout
-          Size="180,42"
-          Id="Package\Territory Extract and Transform\Extract Special Offers"
-          TopLeft="91.5,54.5" />
+          Size="154,42"
+          Id="Package\Territory Extract and Transform\staging updates"
+          TopLeft="567,398" />
         <EdgeLayout
           Id="Package\Territory Extract and Transform.Paths[New Items]"
           TopLeft="535.5,276">
@@ -1029,7 +1030,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Insert records">
+    design-time-name="Package\Territory Extract and Transform\Extract Special Offers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1042,7 +1043,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\staging updates">
+    design-time-name="Package\Territory Extract and Transform\Insert records">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1060,7 +1061,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1070,7 +1071,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1078,7 +1079,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Extract Special Offers">
+    design-time-name="Package\Territory Extract and Transform\staging updates">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
