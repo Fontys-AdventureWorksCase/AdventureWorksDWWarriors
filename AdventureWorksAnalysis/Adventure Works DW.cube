@@ -961,7 +961,7 @@
       <Measures>
         <Measure dwd:design-time-name="7fe503dd-02a9-42a4-acf0-b51fb5ca45bd">
           <ID>Order Qty</ID>
-          <Name>Order Qty</Name>
+          <Name>Order Quantity</Name>
           <Source dwd:design-time-name="af97619e-a878-44a6-ab20-37ff52c84bab">
             <DataType>Integer</DataType>
             <Source xsi:type="ColumnBinding" dwd:design-time-name="98181c5e-476a-401b-91f0-c4e04ad8b804">
@@ -969,6 +969,7 @@
               <ColumnID>OrderQty</ColumnID>
             </Source>
           </Source>
+          <FormatString>#,#</FormatString>
         </Measure>
         <Measure dwd:design-time-name="2c5d6642-40f7-43d2-abdb-d0a086e3b58f">
           <ID>Unit Price</ID>
@@ -980,6 +981,7 @@
               <ColumnID>UnitPrice</ColumnID>
             </Source>
           </Source>
+          <FormatString>Currency</FormatString>
         </Measure>
         <Measure dwd:design-time-name="a861811b-3211-4fa3-bcbb-85a76c17f28e">
           <ID>Unit Price Discount</ID>
@@ -1002,6 +1004,7 @@
               <ColumnID>ProductCost</ColumnID>
             </Source>
           </Source>
+          <FormatString>Currency</FormatString>
         </Measure>
         <Measure dwd:design-time-name="b3bf8adb-43e8-4564-be09-ea4561cd8167">
           <ID>Fact Sales Count</ID>
@@ -1019,23 +1022,25 @@
           <ID>Profit</ID>
           <Name>Profit</Name>
           <Source dwd:design-time-name="038a8962-b923-4a23-b085-da61f25e048f">
-            <DataType>Double</DataType>
+            <DataType>Currency</DataType>
             <Source xsi:type="ColumnBinding" dwd:design-time-name="87c672e5-865e-475a-9e23-d072d958123f">
               <TableID>dbo_Fact_Sales</TableID>
               <ColumnID>Profit</ColumnID>
             </Source>
           </Source>
+          <FormatString>Currency</FormatString>
         </Measure>
         <Measure dwd:design-time-name="67326d09-6fa9-46a3-9a29-537b44370879">
           <ID>Order Total Price</ID>
           <Name>Order Total Price</Name>
           <Source dwd:design-time-name="34527d48-5843-4306-855c-0fc8031f41d2">
-            <DataType>Double</DataType>
+            <DataType>Currency</DataType>
             <Source xsi:type="ColumnBinding" dwd:design-time-name="e15388e9-7a7e-4acd-b89a-ec3731a089f4">
               <TableID>dbo_Fact_Sales</TableID>
               <ColumnID>OrderTotalPrice</ColumnID>
             </Source>
           </Source>
+          <FormatString>Currency</FormatString>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
