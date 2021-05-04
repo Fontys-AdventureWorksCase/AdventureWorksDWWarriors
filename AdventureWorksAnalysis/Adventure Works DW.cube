@@ -410,6 +410,23 @@
           <AttributeID>Person Type</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="53a24f45-4045-431a-b06e-f70724dcf41c">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0f3d2fa5-0279-47ac-be2a-7179bba5bd35">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c1660ccd-8131-49f0-aeb9-a906576d4571">
+          <HierarchyID>Hierarchy 2</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="c304ce79-5fab-42ba-bcb8-36502e43238e">
+          <HierarchyID>Hierarchy 3</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="6da38d56-a1e1-407d-b65d-97089452f167">
+          <HierarchyID>Hierarchy 4</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="5e5d6710-3125-4659-8668-a451afb4d4ba">
       <ID>Dim Product</ID>
@@ -435,6 +452,11 @@
           <AttributeID>Sub Category</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="0dd96fa5-aca5-4b01-928f-d023a81aa02b">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="fed33cd5-6a71-462c-a05e-2a92baa07770">
       <ID>Ship To Location</ID>
@@ -463,6 +485,14 @@
           <AttributeID>Country Region Name</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="601fe90b-b17b-420c-a6fd-77441879a8da">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="9f82bb39-aa7f-4bcb-a11e-f05672fe5b38">
+          <HierarchyID>Hierarchy 1 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="9e2bf619-d92d-4a0f-b4a7-a53396f84add">
       <ID>Due Date</ID>
@@ -590,6 +620,14 @@
           <AttributeID>Current Day</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="9e3c53ac-a5e2-4b4d-b72e-69d3192ffb0f">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="bfdc462e-9572-48a8-8ff5-c6dbfaed57be">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="e94181b6-843f-4d36-96af-61df6a31ac28">
       <ID>Order Date</ID>
@@ -717,6 +755,14 @@
           <AttributeID>Current Day</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="f416ef0b-4b8f-4076-8294-a88ebbe62b24">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="5bd9c191-42f5-46e6-8bf4-464e7dc9304a">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="c814d1ff-3299-4cd6-abfa-6e77f3c3dc6d">
       <ID>Bill To Location</ID>
@@ -745,6 +791,14 @@
           <AttributeID>Country Region Name</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="e8689140-d5d2-450a-9087-83d07330a26e">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="127861fd-dda9-4314-b5f1-e885025fa7ff">
+          <HierarchyID>Hierarchy 1 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="59d9337b-5df4-4811-b990-964a930183b0">
       <ID>Ship Date</ID>
@@ -872,6 +926,14 @@
           <AttributeID>Current Day</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="c9bcf145-6ee5-48fb-9542-c820148c1db0">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="0eaf9bd2-8963-45e5-8bc5-dc87de80c31e">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="6628082d-1665-4cb2-83b4-34ebca364550">
       <ID>Dim Sales Territory</ID>
@@ -891,6 +953,11 @@
           <AttributeID>Continent</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="db3830fd-becd-430c-b0eb-8a7af5f50f4c">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="5a825cbd-5883-4f2a-979b-b54c01f85145">
       <ID>Dim Customer</ID>
@@ -916,6 +983,14 @@
           <AttributeID>Person Type</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="df57c70c-b48e-46ac-b23c-bdb355f42ec1">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="1bf5ce40-59f4-4d7f-8f17-3d3a04fd7023">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
     <Dimension dwd:design-time-name="3739d5d0-fd16-4348-a79d-c2d7ea1cdc2f">
       <ID>Sales Type</ID>
@@ -948,6 +1023,14 @@
           <AttributeID>Type</AttributeID>
         </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="c11ec186-2fe5-4f85-933f-7c5df99b47aa">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+        <Hierarchy dwd:design-time-name="efc02daf-b539-4bfc-acfb-0d9ad850b8ce">
+          <HierarchyID>Hierarchy 1</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
     </Dimension>
   </Dimensions>
   <MeasureGroups>
