@@ -92,9 +92,14 @@
             <Shape Id="Sub Category" Expanded="true">
               <Attributes>
                 <Attribute Id="Sub Category" />
-                <Attribute Id="Category" />
               </Attributes>
               <Position x="496" y="20" />
+            </Shape>
+            <Shape Id="Category" Expanded="false">
+              <Attributes>
+                <Attribute Id="Category" />
+              </Attributes>
+              <Position x="655" y="20" />
             </Shape>
           </Shapes>
         </DiagramLayout>
@@ -133,7 +138,7 @@
         </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="4a22d995-960b-4596-912c-52eacf2eb2b6">
           <AttributeID>Name</AttributeID>
-          <Name>Name</Name>
+          <Name>Name_</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -157,7 +162,7 @@
     </Attribute>
     <Attribute dwd:design-time-name="68b8a0b4-8219-409a-8f63-83ab6149c48b">
       <ID>Name</ID>
-      <Name>Name</Name>
+      <Name>Name_</Name>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="d42bd3f2-ebf0-4b45-b4af-ff8ef4899ca1">
           <DataType>WChar</DataType>

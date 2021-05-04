@@ -76,41 +76,41 @@
               </Attributes>
               <Position x="20" y="20" />
             </Shape>
-            <Shape Id="Country Region Name" Expanded="false">
-              <Attributes>
-                <Attribute Id="Country Region Name" />
-              </Attributes>
-              <Position x="216" y="20" />
-            </Shape>
-            <Shape Id="State Province Name" Expanded="false">
-              <Attributes>
-                <Attribute Id="State Province Name" />
-              </Attributes>
-              <Position x="216" y="68" />
-            </Shape>
-            <Shape Id="City" Expanded="false">
-              <Attributes>
-                <Attribute Id="City" />
-              </Attributes>
-              <Position x="216" y="116" />
-            </Shape>
-            <Shape Id="Postal Code" Expanded="false">
-              <Attributes>
-                <Attribute Id="Postal Code" />
-              </Attributes>
-              <Position x="216" y="164" />
-            </Shape>
             <Shape Id="State Province Code" Expanded="false">
               <Attributes>
                 <Attribute Id="State Province Code" />
               </Attributes>
-              <Position x="412" y="164" />
+              <Position x="216" y="20" />
             </Shape>
             <Shape Id="Country Region Code" Expanded="false">
               <Attributes>
                 <Attribute Id="Country Region Code" />
               </Attributes>
-              <Position x="608" y="164" />
+              <Position x="412" y="20" />
+            </Shape>
+            <Shape Id="Country Region Name" Expanded="false">
+              <Attributes>
+                <Attribute Id="Country Region Name" />
+              </Attributes>
+              <Position x="216" y="68" />
+            </Shape>
+            <Shape Id="State Province Name" Expanded="false">
+              <Attributes>
+                <Attribute Id="State Province Name" />
+              </Attributes>
+              <Position x="216" y="116" />
+            </Shape>
+            <Shape Id="City" Expanded="false">
+              <Attributes>
+                <Attribute Id="City" />
+              </Attributes>
+              <Position x="216" y="164" />
+            </Shape>
+            <Shape Id="Postal Code" Expanded="false">
+              <Attributes>
+                <Attribute Id="Postal Code" />
+              </Attributes>
+              <Position x="216" y="212" />
             </Shape>
           </Shapes>
         </DiagramLayout>
@@ -159,6 +159,10 @@
           <AttributeID>Country Region Name</AttributeID>
           <Name>Country Region Name</Name>
         </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6ed792ab-97a8-4e28-bf17-6cd0bc61cbe1">
+          <AttributeID>State Province Code</AttributeID>
+          <Name>State Province Code</Name>
+        </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
       <AttributeHierarchyDisplayFolder>Codes</AttributeHierarchyDisplayFolder>
@@ -178,12 +182,6 @@
           </Source>
         </KeyColumn>
       </KeyColumns>
-      <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="fa452c51-fe44-40c5-ab7c-3bebfce1248f">
-          <AttributeID>State Province Code</AttributeID>
-          <Name>State Province Code</Name>
-        </AttributeRelationship>
-      </AttributeRelationships>
       <AttributeHierarchyDisplayFolder>Codes</AttributeHierarchyDisplayFolder>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
