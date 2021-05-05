@@ -7,7 +7,7 @@ CREATE TABLE [dbo].[Dim_SalesType](
 );
 
 INSERT INTO Dim_SalesType
-VALUES('Internet Sale'), ('Other Sale')
+VALUES('Internet Sale'), ('Other Sale');
 
 END;
 GO

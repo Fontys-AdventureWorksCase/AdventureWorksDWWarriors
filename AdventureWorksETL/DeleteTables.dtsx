@@ -1,39 +1,38 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="4/26/2021 12:37:27 PM"
+  DTS:CreationDate="5/4/2021 9:38:11 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-IMLUOESP5LO"
   DTS:CreatorName="WIN-IMLUOESP5LO\teun"
-  DTS:DTSID="{581E0B94-8D7F-426C-B879-5B34BA5FF478}"
+  DTS:DTSID="{752EDE34-E402-47FE-AA20-836C1A5F6AC4}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.157"
   DTS:LocaleID="1043"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{74145A2E-19DD-4F46-A7DB-E1F85113BA76}">
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{AE03A0A0-355D-4D5E-A025-932E11E9EA2C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
+      DTS:refId="Package\Delete DW tables"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DelayValidation="True"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{BC4D6D0E-7DC2-4FD5-BED2-A70AF41199D3}"
+      DTS:DTSID="{39707B1E-6D0B-4110-B29D-C71732E7F890}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
+      DTS:ObjectName="Delete DW tables"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Dim_SalesType', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;CREATE TABLE [dbo].[Dim_SalesType](&#xA;&#x9;[SalesTypeKey] [int] IDENTITY(1,1) PRIMARY KEY,&#xA;&#x9;[TypeName] [nvarchar](15) NOT NULL UNIQUE&#xA;);&#xA;&#xA;INSERT INTO Dim_SalesType&#xA;VALUES('Internet Sale'), ('Other Sale');&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dbo].[Fact_Sales];&#xA;&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Customer];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Date];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Location];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Product];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesPerson];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesTerritory];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesType];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SpecialOffer];&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -50,9 +49,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="442,42"
-          Id="Package\Create SalesType table if not exists and insert 'Internet Sale' and 'Other Sale'"
-          TopLeft="85,22" />
+          Size="163,42"
+          Id="Package\Delete DW tables"
+          TopLeft="167,86" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

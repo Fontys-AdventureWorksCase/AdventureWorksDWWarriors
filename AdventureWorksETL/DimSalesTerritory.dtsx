@@ -5,6 +5,7 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-IMLUOESP5LO"
   DTS:CreatorName="WIN-IMLUOESP5LO\Administrator"
+  DTS:DelayValidation="True"
   DTS:DTSID="{D180C994-B521-4996-B617-976B2C9D73FB}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.157"
@@ -12,8 +13,8 @@
   DTS:ObjectName="DimSalesTerritory"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{D61CBC78-6C76-40B4-9694-2DEC8E425958}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{8BB40140-C63D-4613-A7E5-9A503E5EB902}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1053,9 +1054,51 @@ where [refTable].[CountryRegionCode] = ?</property>
           Id="Package\Territory Extract and Transform\Insert records"
           TopLeft="278.5,394.5" />
         <NodeLayout
+          Size="148,42"
+          Id="Package\Territory Extract and Transform\Enrich Country"
+          TopLeft="144,230" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Territory Extract and Transform\staging updates"
+          TopLeft="567,398" />
+        <NodeLayout
           Size="149,42"
           Id="Package\Territory Extract and Transform\Already Exists?"
           TopLeft="461,234" />
+        <EdgeLayout
+          Id="Package\Territory Extract and Transform.Paths[OLE DB Source Output]"
+          TopLeft="166.5,96.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.5,133.5"
+              Start="0,0"
+              End="51.5,126">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.75"
+                    Point2="0,66.75"
+                    Point3="4,66.75" />
+                  <mssgle:LineSegment
+                    End="47.5,66.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.5,66.75"
+                    Point2="51.5,66.75"
+                    Point3="51.5,70.75" />
+                  <mssgle:LineSegment
+                    End="51.5,126" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Territory Extract and Transform.Paths[New Items]"
           TopLeft="535.5,276">
@@ -1092,72 +1135,6 @@ where [refTable].[CountryRegionCode] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="148,42"
-          Id="Package\Territory Extract and Transform\Enrich Country"
-          TopLeft="144,230" />
-        <EdgeLayout
-          Id="Package\Territory Extract and Transform.Paths[OLE DB Source Output]"
-          TopLeft="166.5,96.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="51.5,133.5"
-              Start="0,0"
-              End="51.5,126">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,62.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,62.75"
-                    Point2="0,66.75"
-                    Point3="4,66.75" />
-                  <mssgle:LineSegment
-                    End="47.5,66.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="47.5,66.75"
-                    Point2="51.5,66.75"
-                    Point3="51.5,70.75" />
-                  <mssgle:LineSegment
-                    End="51.5,126" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Territory Extract and Transform.Paths[Lookup Match Output]"
-          TopLeft="292,253">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="169,0"
-              Start="0,0"
-              End="161.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="161.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="23.6899609375,5,114.120078125,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Territory Extract and Transform\staging updates"
-          TopLeft="567,398" />
         <EdgeLayout
           Id="Package\Territory Extract and Transform.Paths[Lookup Match Output1]"
           TopLeft="559,276">
@@ -1191,6 +1168,30 @@ where [refTable].[CountryRegionCode] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-5.69138671875,54.5776892430279,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Territory Extract and Transform.Paths[Lookup Match Output]"
+          TopLeft="292,253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="169,0"
+              Start="0,0"
+              End="161.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="161.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="32.55861328125,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
