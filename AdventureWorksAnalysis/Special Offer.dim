@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="a20390f4-46b1-44c6-8b9e-b98aa652f3e9" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="c005f493-2440-4771-b0b6-24e30246916b" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Special Offer</ID>
   <Name>Special Offer</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -96,52 +96,52 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="0c3662be-2e09-45b0-aa40-049d367c86bd">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="307e6252-8c12-4f70-83a7-7126000b4dc4">
     <DataSourceViewID>Adventure Works DW</DataSourceViewID>
   </Source>
   <Type>Promotion</Type>
   <UnknownMember>Visible</UnknownMember>
-  <ErrorConfiguration dwd:design-time-name="eeb230d6-14d0-4626-bf86-f7b103c2e6e1">
+  <ErrorConfiguration dwd:design-time-name="e4e4fe68-eb87-4c22-b0c7-ce1963e3b56e">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="dd4485ab-1dc1-4116-9acb-902d0c3dfdcd">
+    <Attribute dwd:design-time-name="6de41b59-4ff0-4246-889f-71298b08b62f">
       <ID>Special Offer Key</ID>
       <Name>Key_Description</Name>
       <Type>ID</Type>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="af6f2247-857c-4648-827f-7680f029fe1e">
+        <KeyColumn dwd:design-time-name="add018a6-4185-43b6-aff5-c284169ce03e">
           <DataType>Integer</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="45f59fdc-d24a-4e66-8cba-12d182086baa">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b40b3528-ec52-4e8a-8c1a-d2306d392a44">
             <TableID>dbo_Dim_SpecialOffer</TableID>
             <ColumnID>SpecialOfferKey</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
-      <NameColumn dwd:design-time-name="da16f9c5-11fa-4f05-9e17-b6ba7ffb43ac">
+      <NameColumn dwd:design-time-name="61409864-506b-427b-9b80-7f1333f80426">
         <DataType>WChar</DataType>
         <DataSize>255</DataSize>
-        <Source xsi:type="ColumnBinding" dwd:design-time-name="18bfcd09-daed-4875-8a2f-b5bc6ae292f0">
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="de6b2ec5-ef1f-41a9-83c2-470314731deb">
           <TableID>dbo_Dim_SpecialOffer</TableID>
           <ColumnID>Description</ColumnID>
         </Source>
       </NameColumn>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="32880f7e-ece9-4a41-bff3-09813359b37b">
+        <AttributeRelationship dwd:design-time-name="add4d0b7-2929-422d-9084-6b42fb632108">
           <AttributeID>Description</AttributeID>
           <Name>Special Offer Description</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="9a04d995-821f-4fb4-98a6-b96ec1648eb4">
+        <AttributeRelationship dwd:design-time-name="919c6fd7-e830-4088-b658-1e50e148b6b0">
           <AttributeID>Category</AttributeID>
           <RelationshipType>Rigid</RelationshipType>
           <Name>Category</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="fb4237a5-c24e-4c04-8d0d-34fa2a2ca7d7">
+        <AttributeRelationship dwd:design-time-name="9f2e28cb-245e-463d-98c7-061a79ff82a9">
           <AttributeID>Type</AttributeID>
           <RelationshipType>Rigid</RelationshipType>
           <Name>Type</Name>
@@ -152,32 +152,33 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="f5feacbb-6932-4109-8c4c-f20e6de1375a">
+    <Attribute dwd:design-time-name="38a89df9-399a-467a-8296-c83393369493">
       <ID>Description</ID>
       <Name>Special Offer Description</Name>
       <Type>Promotion</Type>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="12633bf5-4313-4b5e-9d5d-47f8732055ba">
+        <KeyColumn dwd:design-time-name="8b34499e-e09d-45ff-bde1-7b7aa5d81842">
           <DataType>WChar</DataType>
           <DataSize>255</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="030135b3-2f6e-422b-bd04-8e42033eff86">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f753500a-fbee-4272-82f4-9461a1dde29a">
             <TableID>dbo_Dim_SpecialOffer</TableID>
             <ColumnID>Description</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="a6691232-c8ec-4758-ad45-7331d4531036">
+    <Attribute dwd:design-time-name="fa78ce2e-6372-4fdc-8b13-89660e88b80d">
       <ID>Category</ID>
       <Name>Category</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="0c1afa73-0609-4ec4-a787-0ce32e409552">
+        <KeyColumn dwd:design-time-name="05603d56-b3f8-45b2-be6b-accdd2072dd5">
           <DataType>WChar</DataType>
           <DataSize>255</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="be310683-8f49-4989-b499-3ae85a841537">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2540b16a-b6c8-4336-bb59-370af4565845">
             <TableID>dbo_Dim_SpecialOffer</TableID>
             <ColumnID>Category</ColumnID>
           </Source>
@@ -188,14 +189,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="785dca5a-5fec-4dad-a884-03f51457d18a">
+    <Attribute dwd:design-time-name="4c7b603b-ed2e-4c43-aa42-da9f94e538fc">
       <ID>Type</ID>
       <Name>Type</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="25e8e6c1-2943-4ee4-804b-2426b55d49c3">
+        <KeyColumn dwd:design-time-name="f4663474-e403-4f7c-bd48-7b4da10801c9">
           <DataType>WChar</DataType>
           <DataSize>255</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="ab4e2973-0966-41d8-bf20-b15bfe664ed4">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7985fc4c-c1c7-4058-9ee6-efb8cda08f48">
             <TableID>dbo_Dim_SpecialOffer</TableID>
             <ColumnID>Type</ColumnID>
           </Source>
@@ -208,32 +209,32 @@
     </Attribute>
   </Attributes>
   <Hierarchies>
-    <Hierarchy dwd:design-time-name="ef22f616-0c5d-43a3-a463-321e3d8e6d2e">
+    <Hierarchy dwd:design-time-name="b9329764-04b6-40f8-908e-300825f6a10e">
       <ID>Hierarchy</ID>
       <Name>Special Offer Category</Name>
       <Levels>
-        <Level dwd:design-time-name="7510acda-630c-4c30-9270-cdcf69cee2bb">
+        <Level dwd:design-time-name="61fbbcfc-8503-4e42-9914-b75ad6d3e4ea">
           <ID>Category</ID>
           <Name>Category</Name>
           <SourceAttributeID>Category</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="273d9848-fe25-4e28-b11a-6da377ba09b3">
+        <Level dwd:design-time-name="32f9303e-bc5f-410f-b9a1-a4d43fe59aec">
           <ID>Key_Description</ID>
           <Name>Key_Description</Name>
           <SourceAttributeID>Special Offer Key</SourceAttributeID>
         </Level>
       </Levels>
     </Hierarchy>
-    <Hierarchy dwd:design-time-name="953ad5e2-0383-4d2a-93f3-01cfd1e26766">
+    <Hierarchy dwd:design-time-name="6b1a320f-7e71-4cb3-8c80-0a1f52ff452c">
       <ID>Hierarchy 1</ID>
       <Name>Special Offer Type</Name>
       <Levels>
-        <Level dwd:design-time-name="bf34fe31-9a71-40d7-a568-54b5c96f1fa1">
+        <Level dwd:design-time-name="0894b858-4bd9-4644-92b1-39dfbc713652">
           <ID>Type</ID>
           <Name>Type</Name>
           <SourceAttributeID>Type</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="cd5275ac-2065-4e71-91ff-1136992b83e3">
+        <Level dwd:design-time-name="4a5a4937-5bd4-424a-8c17-d2ad2dbc8b6d">
           <ID>Key_Description</ID>
           <Name>Key_Description</Name>
           <SourceAttributeID>Special Offer Key</SourceAttributeID>
