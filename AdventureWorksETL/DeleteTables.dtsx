@@ -12,8 +12,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{AE03A0A0-355D-4D5E-A025-932E11E9EA2C}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{25314899-1CFF-4EFD-9CFC-F6F9C8FA74E2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,7 +32,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dbo].[Fact_Sales];&#xA;&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Customer];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Date];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Location];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Product];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesPerson];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesTerritory];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesType];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SpecialOffer];&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS [dbo].[Fact_Sales];&#xA;DROP TABLE IF EXISTS [dbo].[Fact_CurrencyRate];&#xA;&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Customer];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Date];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Location];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Product];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesPerson];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesTerritory];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SalesType];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_SpecialOffer];&#xA;DROP TABLE IF EXISTS [dbo].[Dim_Currency];&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>

@@ -7,6 +7,22 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "AdventureWorksETL", "Advent
 EndProject
 Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "AdventureWorksAnalysis", "AdventureWorksAnalysis\AdventureWorksAnalysis.dwproj", "{1C94B74E-7D16-41E3-9954-44489662E9EC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8CEA5584-1475-4EF3-9878-0A2552934C1C}"
+	ProjectSection(SolutionItems) = preProject
+		AdventureWorksETL\scripts\create-customer-table.sql = AdventureWorksETL\scripts\create-customer-table.sql
+		AdventureWorksETL\scripts\createDateTable.sql = AdventureWorksETL\scripts\createDateTable.sql
+		AdventureWorksETL\scripts\createLocationTable.sql = AdventureWorksETL\scripts\createLocationTable.sql
+		AdventureWorksETL\scripts\createProductTable.sql = AdventureWorksETL\scripts\createProductTable.sql
+		AdventureWorksETL\scripts\createSalesFactTable.sql = AdventureWorksETL\scripts\createSalesFactTable.sql
+		AdventureWorksETL\scripts\createSalesPersonTable.sql = AdventureWorksETL\scripts\createSalesPersonTable.sql
+		AdventureWorksETL\scripts\createSalesTypeTable.sql = AdventureWorksETL\scripts\createSalesTypeTable.sql
+		AdventureWorksETL\scripts\dimCurrencyPrepare.sql = AdventureWorksETL\scripts\dimCurrencyPrepare.sql
+		AdventureWorksETL\scripts\dimSalesTerritoryPrepare.sql = AdventureWorksETL\scripts\dimSalesTerritoryPrepare.sql
+		AdventureWorksETL\scripts\dimSalesTerritoryUpdate.sql = AdventureWorksETL\scripts\dimSalesTerritoryUpdate.sql
+		AdventureWorksETL\scripts\dimSpecialOfferPrepare.sql = AdventureWorksETL\scripts\dimSpecialOfferPrepare.sql
+		AdventureWorksETL\scripts\dimSpecialOfferUpdate.sql = AdventureWorksETL\scripts\dimSpecialOfferUpdate.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
