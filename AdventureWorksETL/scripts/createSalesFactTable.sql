@@ -15,13 +15,13 @@ CREATE TABLE [dbo].[Fact_Sales] (
 	[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
 	[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
 	[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),
+	[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),
 	[OrderQty] [smallint] NULL,
-	[UnitPrice] [money] NULL,
+	[UnitPrice] [money] NOT NULL,
 	[UnitPriceDiscount] [float] NULL,
-	[ProductCost] [money] NULL
+	[ProductCost] [money] NULL,
+	[OrderTotalPrice] [money] NOT NULL
 );
-
-
 END;
 GO
 
