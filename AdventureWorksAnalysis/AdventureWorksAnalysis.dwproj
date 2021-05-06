@@ -48,8 +48,16 @@
       <FullPath>Dim Sales Type.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Special Offer.dim</Name>
-      <FullPath>Special Offer.dim</FullPath>
+      <Name>Dim Special Offer.dim</Name>
+      <FullPath>Dim Special Offer.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Currency.dim</Name>
+      <FullPath>Dim Currency.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Reporting Currency.dim</Name>
+      <FullPath>Reporting Currency.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>

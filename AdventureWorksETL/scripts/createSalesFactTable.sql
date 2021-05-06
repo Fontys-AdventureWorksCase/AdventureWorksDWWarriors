@@ -14,6 +14,7 @@ CREATE TABLE [dbo].[Fact_Sales] (
 	[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),
 	[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),
 	[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),
+	[CurrencyKey] [nvarchar](3) NOT NULL FOREIGN KEY REFERENCES Dim_Currency(CurrencyKey),
 	[OrderQty] [smallint] NULL,
 	[UnitPrice] [money] NULL,
 	[UnitPriceDiscount] [float] NULL,
@@ -25,10 +26,3 @@ CREATE TABLE [dbo].[Fact_Sales] (
 
 END;
 GO
-
-
-
-
-
-
-

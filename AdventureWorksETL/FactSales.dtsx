@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{D49DE089-A91B-4673-92F8-345432B165FE}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{F80BD1F4-05FC-47E9-AB66-E04BA0F47972}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[Profit] [money] NULL,&#xA;&#x9;[OrderTotalPrice] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[CurrencyKey] [nvarchar](3) NOT NULL FOREIGN KEY REFERENCES Dim_Currency(CurrencyKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[Profit] [money] NULL,&#xA;&#x9;[OrderTotalPrice] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -343,6 +343,465 @@
                       refId="Package\Extract Sales Data\Create Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Extract Sales Data\Create Date Keys.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Sales Data\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Sales Data\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Sales Data\Derived Column.Inputs[Derived Column Input].Columns[CurrencyCodeOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCodeOriginal"
+                      lineageId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[CurrencyCodeOriginal]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Sales Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="3"
+                      lineageId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,3)[REPLACENULL](#{Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[CurrencyCodeOriginal]},(DT_WSTR,3)"USD")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,3)REPLACENULL(CurrencyCodeOriginal,(DT_WSTR,3)"USD")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Sales Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Sales Data\Extract currency"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Extract currency"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Sales].[Currency]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Sales].[Currency]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[ToCurrencyCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Sales Data\Extract currency.Connections[OleDbConnection]"
+                  connectionManagerID="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorks]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input].Columns[ToCurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="ToCurrencyCode"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[ToCurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[CurrencyCodeOriginal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[CurrencyCodeOriginal]"
+                      name="CurrencyCodeOriginal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Name</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Sales Data\Extract currency rate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Extract currency rate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Sales].[CurrencyRate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Sales].[CurrencyRate]) [refTable]
+where [refTable].[CurrencyRateID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyRateID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyRateDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FromCurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ToCurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AverageRate" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndOfDayRate" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CurrencyRateID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Sales Data\Extract currency rate.Connections[OleDbConnection]"
+                  connectionManagerID="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorks]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input].Columns[CurrencyRateID]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyRateID"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CurrencyRateID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyRateID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[FromCurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[FromCurrencyCode]"
+                      name="FromCurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FromCurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[ToCurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[ToCurrencyCode]"
+                      name="ToCurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ToCurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[CurrencyRateDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[CurrencyRateDate]"
+                      name="CurrencyRateDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyRateDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[CurrencyRateID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output].Columns[CurrencyRateID]"
+                      name="CurrencyRateID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyRateID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1034,6 +1493,20 @@ where [refTable].[SalesOrderID] = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">SubTotal</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CurrencyRateID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[CurrencyRateID]"
+                      name="CurrencyRateID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyRateID</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2356,6 +2829,13 @@ where [refTable].[AddressID] = ?</property>
                       cachedName="Profit"
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
                       lineageId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output].Columns[Profit]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyKey]"
+                      lineageId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Output].Columns[CurrencyCode]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2427,6 +2907,11 @@ where [refTable].[AddressID] = ?</property>
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
                       dataType="cy"
                       name="Profit" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyKey]"
+                      dataType="wstr"
+                      length="3"
+                      name="CurrencyKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2537,6 +3022,16 @@ where [refTable].[AddressID] = ?</property>
               name="Derived Column Output"
               startId="Package\Extract Sales Data\Create Date Keys.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Extract Sales Data.Paths[Derived Column Output3]"
+              endId="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales).Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Derived Column Output4]"
+              endId="Package\Extract Sales Data\Extract Product Cost.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Sales Data\Derived Column.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Extract Sales Data.Paths[Derived Column Output1]"
               endId="Package\Extract Sales Data\Lookup Product Key.Inputs[Lookup Input]"
               name="Derived Column Output"
@@ -2546,11 +3041,6 @@ where [refTable].[AddressID] = ?</property>
               endId="Package\Extract Sales Data\Lookup SalesType Key.Inputs[Lookup Input]"
               name="Derived Column Output"
               startId="Package\Extract Sales Data\Add SalesType.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Derived Column Output3]"
-              endId="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales).Inputs[Derived Column Input]"
-              name="Derived Column Output"
-              startId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output]" />
             <path
               refId="Package\Extract Sales Data.Paths[Lookup Match Output]"
               endId="Package\Extract Sales Data\Lookup SalesPerson Key.Inputs[Lookup Input]"
@@ -2572,30 +3062,40 @@ where [refTable].[AddressID] = ?</property>
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Lookup ShipTo PostalCode.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output4]"
-              endId="Package\Extract Sales Data\Create Date Keys.Inputs[Derived Column Input]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output10]"
+              endId="Package\Extract Sales Data\Derived Column.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup ShipTo Location Key.Outputs[Lookup Match Output]" />
+              startId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Extract Sales Data.Paths[Lookup Match Output5]"
-              endId="Package\Extract Sales Data\Extract Product Cost.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output6]"
               endId="Package\Extract Sales Data\Lookup BillTo PostalCode.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Lookup SalesType Key.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output7]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output6]"
               endId="Package\Extract Sales Data\Add SalesType.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output8]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output7]"
               endId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output8]"
+              endId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output9]"
+              endId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output4]"
+              endId="Package\Extract Sales Data\Create Date Keys.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup ShipTo Location Key.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Extract Sales Data.Paths[OLE DB Source Output]"
               endId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Inputs[Lookup Input]"
@@ -2677,66 +3177,70 @@ where [refTable].[AddressID] = ?</property>
     design-time-name="Package\Extract Sales Data">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Extract Sales Data\Lookup ShipTo PostalCode"
-          TopLeft="583.083333333333,331.916666666667" />
-        <NodeLayout
-          Size="193,42"
-          Id="Package\Extract Sales Data\Lookup SalesPerson Key"
-          TopLeft="271.5,235.75" />
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Extract Sales Data\Lookup BillTo Location key"
-          TopLeft="337.083333333334,333.083333333333" />
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Extract Sales Data\Extract Product Cost"
-          TopLeft="59.5,87" />
-        <NodeLayout
-          Size="397,42"
-          Id="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales)"
-          TopLeft="53.75,160.75" />
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="225,42"
           Id="Package\Extract Sales Data\Extract SalesOrderHeader Data"
-          TopLeft="336.75,10.5" />
+          TopLeft="336.75,12.5" />
         <NodeLayout
           Size="171,42"
           Id="Package\Extract Sales Data\OLE DB Destination"
-          TopLeft="45.25,501.5" />
+          TopLeft="45.25,503.5" />
         <NodeLayout
           Size="184,42"
           Id="Package\Extract Sales Data\Lookup SalesType Key"
-          TopLeft="718.75,227.75" />
+          TopLeft="718.75,229.75" />
         <NodeLayout
           Size="197,42"
           Id="Package\Extract Sales Data\Lookup BillTo PostalCode"
-          TopLeft="46.75,336.75" />
+          TopLeft="46.75,338.75" />
         <NodeLayout
           Size="218,42"
           Id="Package\Extract Sales Data\Extract SalesOrderDetail Data"
-          TopLeft="51.25,7.5" />
+          TopLeft="51.25,9.5" />
         <NodeLayout
           Size="160,42"
           Id="Package\Extract Sales Data\Create Date Keys"
-          TopLeft="48.3333333333335,424.666666666667" />
+          TopLeft="48.3333333333335,426.666666666667" />
         <NodeLayout
           Size="212,42"
           Id="Package\Extract Sales Data\Lookup ShipTo Location Key"
-          TopLeft="827.833333333333,322.666666666667" />
+          TopLeft="827.833333333333,324.666666666667" />
         <NodeLayout
           Size="173,42"
           Id="Package\Extract Sales Data\Lookup Product Key"
-          TopLeft="51.7500000000001,230.5" />
+          TopLeft="51.7500000000001,232.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Extract Sales Data\Calculate profit"
+          TopLeft="310,95.75" />
+        <NodeLayout
+          Size="397,42"
+          Id="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales)"
+          TopLeft="53.75,162.75" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Extract Sales Data\Lookup ShipTo PostalCode"
+          TopLeft="583.083333333333,333.916666666667" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract Sales Data\Lookup SalesPerson Key"
+          TopLeft="271.5,237.75" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Extract Sales Data\Lookup BillTo Location key"
+          TopLeft="337.083333333334,335.083333333333" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Extract Sales Data\Extract Product Cost"
+          TopLeft="59.5,89" />
         <NodeLayout
           Size="148,42"
           Id="Package\Extract Sales Data\Add SalesType"
-          TopLeft="515.75,231.75" />
+          TopLeft="515.75,233.75" />
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[OLE DB Source Output]"
-          TopLeft="269.25,30">
+          TopLeft="269.25,32">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2758,7 +3262,31 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output7]"
-          TopLeft="464.5,254.75">
+          TopLeft="234.5,113.375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.5,0"
+              Start="0,0"
+              End="68,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.19138671875,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output6]"
+          TopLeft="464.5,256.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2781,8 +3309,8 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Lookup Match Output6]"
-          TopLeft="810.75,269.75">
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output5]"
+          TopLeft="810.75,271.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2817,44 +3345,8 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Lookup Match Output5]"
-          TopLeft="449.25,52.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-302.25,34.5"
-              Start="0,0"
-              End="-302.25,27">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.25"
-                    Point2="0,17.25"
-                    Point3="-4,17.25" />
-                  <mssgle:LineSegment
-                    End="-298.25,17.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-298.25,17.25"
-                    Point2="-302.25,17.25"
-                    Point3="-302.25,21.25" />
-                  <mssgle:LineSegment
-                    End="-302.25,27" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-199.31638671875,22.25,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output4]"
-          TopLeft="933.833333333333,364.666666666667">
+          TopLeft="933.833333333333,366.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2890,7 +3382,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output3]"
-          TopLeft="787.083333333333,352.916666666667">
+          TopLeft="787.083333333333,354.916666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2926,7 +3418,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output2]"
-          TopLeft="541.083333333334,353.5">
+          TopLeft="541.083333333334,355.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2950,7 +3442,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output1]"
-          TopLeft="243.75,355.916666666667">
+          TopLeft="243.75,357.916666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2974,7 +3466,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output]"
-          TopLeft="224.75,254.125">
+          TopLeft="224.75,256.125">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2997,8 +3489,42 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Derived Column Output3]"
+          TopLeft="385,137.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-132.75,25"
+              Start="0,0"
+              End="-132.75,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.5"
+                    Point2="0,12.5"
+                    Point3="-4,12.5" />
+                  <mssgle:LineSegment
+                    End="-128.75,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-128.75,12.5"
+                    Point2="-132.75,12.5"
+                    Point3="-132.75,16.5" />
+                  <mssgle:LineSegment
+                    End="-132.75,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output2]"
-          TopLeft="663.75,250.75">
+          TopLeft="663.75,252.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3020,7 +3546,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output1]"
-          TopLeft="252.25,202.75">
+          TopLeft="252.25,204.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3054,7 +3580,7 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output]"
-          TopLeft="129.541666666667,466.666666666667">
+          TopLeft="129.541666666667,468.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3075,59 +3601,127 @@ where [refTable].[AddressID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="150,42"
-          Id="Package\Extract Sales Data\Calculate profit"
-          TopLeft="310,93.75" />
+          Size="177,42"
+          Id="Package\Extract Sales Data\Extract currency rate"
+          TopLeft="676,20" />
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output8]"
-          TopLeft="234.5,111.375">
+          TopLeft="561.75,37.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="75.5,0"
+              EndConnector="114.25,0"
               Start="0,0"
-              End="68,0">
+              End="106.75,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="68,0" />
+                    End="106.75,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-14.19138671875,5,96.3827734375,11.609375"
+              BoundingBox="5.18361328125,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Extract Sales Data\Extract currency"
+          TopLeft="987,20" />
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Derived Column Output3]"
-          TopLeft="385,135.75">
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output9]"
+          TopLeft="853,41">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-132.75,25"
+              EndConnector="134,0"
               Start="0,0"
-              End="-132.75,17.5">
+              End="126.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8.5"
-                    Point2="0,12.5"
-                    Point3="-4,12.5" />
+                    End="126.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.05861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Extract Sales Data\Derived Column"
+          TopLeft="976,63" />
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Lookup Match Output10]"
+          TopLeft="1142,41">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,43"
+              Start="0,0"
+              End="-4.5,43">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-128.75,12.5" />
+                    End="18.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-128.75,12.5"
-                    Point2="-132.75,12.5"
-                    Point3="-132.75,16.5" />
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
                   <mssgle:LineSegment
-                    End="-132.75,17.5" />
+                    End="22.5,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,39"
+                    Point2="22.5,43"
+                    Point3="18.5,43" />
+                  <mssgle:LineSegment
+                    End="-4.5,43" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.69138671875,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Derived Column Output4]"
+          TopLeft="976,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-741.5,20.3333333333333"
+              Start="0,0"
+              End="-734,20.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-424.573394495413,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-424.573394495413,0"
+                    Point2="-428.573394495413,0"
+                    Point3="-428.573394495413,4" />
+                  <mssgle:LineSegment
+                    End="-428.573394495413,16.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-428.573394495413,16.3333333333333"
+                    Point2="-428.573394495413,20.3333333333333"
+                    Point3="-432.573394495413,20.3333333333333" />
+                  <mssgle:LineSegment
+                    End="-734,20.3333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3139,98 +3733,6 @@ where [refTable].[AddressID] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Person].[Address]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup SalesPerson Key">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Dim_SalesPerson]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Dim_Location]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Extract Product Cost">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Production].[Product]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Extract Sales Data\Extract SalesOrderHeader Data">
     <Properties>
@@ -3247,7 +3749,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3366,6 +3868,144 @@ where [refTable].[AddressID] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Person].[Address]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Lookup SalesPerson Key">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_SalesPerson]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_Location]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Extract Product Cost">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Production].[Product]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Extract currency rate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Sales].[CurrencyRate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Extract currency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Sales].[Currency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
