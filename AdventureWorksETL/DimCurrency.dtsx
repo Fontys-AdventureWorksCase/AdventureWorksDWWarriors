@@ -12,8 +12,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{46B75CBB-698D-4413-B764-4D8CAA196823}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{ADC6EA53-CFBA-47B0-A4CD-C2C6FDF7D6C6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -21,6 +21,7 @@
     <DTS:Executable
       DTS:refId="Package\Currency ETL"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{2EF45E31-70F6-407D-AA79-890E1B63F955}"
       DTS:ExecutableType="Microsoft.Pipeline"
