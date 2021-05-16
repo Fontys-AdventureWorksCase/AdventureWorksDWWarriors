@@ -13,8 +13,8 @@
   DTS:ObjectName="CustomerExtraction"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="72"
-  DTS:VersionGUID="{25B7478E-5465-4A43-AE1E-FC0966A4077F}">
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{54C2C869-EDAD-4306-9217-64F9E15BB0DB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -179,22 +179,22 @@
                     <externalMetadataColumn
                       refId="Package\Load customers\Data warehouse dimension.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                       dataType="wstr"
-                      length="1"
+                      length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Load customers\Data warehouse dimension.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
                       dataType="wstr"
-                      length="1"
+                      length="50"
                       name="MiddleName" />
                     <externalMetadataColumn
                       refId="Package\Load customers\Data warehouse dimension.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       dataType="wstr"
-                      length="1"
+                      length="50"
                       name="LastName" />
                     <externalMetadataColumn
                       refId="Package\Load customers\Data warehouse dimension.Inputs[OLE DB Destination Input].ExternalColumns[PersonType]"
                       dataType="wstr"
-                      length="1"
+                      length="50"
                       name="PersonType" />
                   </externalMetadataColumns>
                 </input>
@@ -1909,17 +1909,37 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="160,42"
+          Id="Package\Load customers\Filter out existing"
+          TopLeft="249,109" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load customers\Merge Join"
+          TopLeft="533,223" />
+        <NodeLayout
           Size="163,42"
           Id="Package\Load customers\Extract customers"
           TopLeft="253,39" />
         <NodeLayout
+          Size="195,42"
+          Id="Package\Load customers\Sort on BusinessEntityID"
+          TopLeft="760,220" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load customers\Extract person details"
+          TopLeft="777,40" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Load customers\Load personal details"
+          TopLeft="777,114" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Load customers\Sort on PersonID"
+          TopLeft="246,230" />
+        <NodeLayout
           Size="206,42"
           Id="Package\Load customers\Data warehouse dimension"
           TopLeft="497,349" />
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Load customers\Filter out existing"
-          TopLeft="249,109" />
         <EdgeLayout
           Id="Package\Load customers.Paths[OLE DB Source Output]"
           TopLeft="331.75,81">
@@ -1942,28 +1962,20 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Load customers\Load personal details"
-          TopLeft="777,114" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Load customers\Extract person details"
-          TopLeft="777,40" />
         <EdgeLayout
-          Id="Package\Load customers.Paths[OLE DB Source Output1]"
-          TopLeft="866.75,82">
+          Id="Package\Load customers.Paths[Merge Join Output]"
+          TopLeft="599,265">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32"
+              EndConnector="0,84"
               Start="0,0"
-              End="0,24.5">
+              End="0,76.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5" />
+                    End="0,76.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1972,14 +1984,6 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Load customers\Merge Join"
-          TopLeft="533,223" />
-        <NodeLayout
-          Size="160,42"
-          Id="Package\Load customers\Sort on PersonID"
-          TopLeft="246,230" />
         <EdgeLayout
           Id="Package\Load customers.Paths[Lookup No Match Output]"
           TopLeft="327.5,151">
@@ -2004,32 +2008,6 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load customers.Paths[Sort Output]"
-          TopLeft="406,247.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127,0"
-              Start="0,0"
-              End="119.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="119.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="195,42"
-          Id="Package\Load customers\Sort on BusinessEntityID"
-          TopLeft="760,220" />
         <EdgeLayout
           Id="Package\Load customers.Paths[Lookup Match Output]"
           TopLeft="866,156">
@@ -2089,19 +2067,41 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load customers.Paths[Merge Join Output]"
-          TopLeft="599,265">
+          Id="Package\Load customers.Paths[Sort Output]"
+          TopLeft="406,247.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,84"
+              EndConnector="127,0"
               Start="0,0"
-              End="0,76.5">
+              End="119.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,76.5" />
+                    End="119.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load customers.Paths[OLE DB Source Output1]"
+          TopLeft="866.75,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2113,32 +2113,6 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load customers\Extract customers">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load customers\Data warehouse dimension">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load customers\Filter out existing">
     <Properties>
@@ -2163,12 +2137,38 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Load customers\Extract customers">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load customers\Extract person details">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load customers\Load personal details">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2178,7 +2178,7 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2186,7 +2186,7 @@ where [refTable].[PersonType] = ? and [refTable].[Title] = ? and [refTable].[Fir
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load customers\Extract person details">
+    design-time-name="Package\Load customers\Data warehouse dimension">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
