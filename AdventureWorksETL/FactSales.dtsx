@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[CurrencyKey] [nvarchar](3) NOT NULL FOREIGN KEY REFERENCES Dim_Currency(CurrencyKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[Profit] [money] NULL,&#xA;&#x9;[OrderTotalPrice] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Fact_Sales', N'U') IS NULL &#xA;BEGIN   &#xA;&#xA;&#xA;CREATE TABLE [dbo].[Fact_Sales] (&#xA;&#x9;[ProductKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Product(ProductKey),&#xA;&#x9;[SalesPersonKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesPerson(SalesPersonKey),&#xA;&#x9;[CustomerKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Customer(CustomerID),&#xA;&#x9;[SalesTerritoryKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesTerritory(TerritoryKey),&#xA;&#x9;[BillToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[ShipToLocationKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Location(LocationKey),&#xA;&#x9;[OrderDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[DueDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[ShipDateKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_Date(DateKey),&#xA;&#x9;[SalesTypeKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SalesType(SalesTypeKey),&#xA;&#x9;[SpecialOfferKey] [int] NOT NULL FOREIGN KEY REFERENCES Dim_SpecialOffer(SpecialOfferKey),&#xA;&#x9;[CurrencyKey] [nvarchar](3) NOT NULL FOREIGN KEY REFERENCES Dim_Currency(CurrencyKey),&#xA;&#x9;[OrderQty] [smallint] NULL,&#xA;&#x9;[UnitPrice] [money] NULL,&#xA;&#x9;[UnitPriceDiscount] [float] NULL,&#xA;&#x9;[ProductCost] [money] NULL,&#xA;&#x9;[TotalProductPrice] [money] NULL,&#xA;&#x9;[TotalProductCost] [money] NULL,&#xA;&#x9;[Profit] [money] NULL&#xA;);&#xA;&#xA;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -145,15 +145,19 @@
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input].Columns[UnitPrice]"
-                      cachedDataType="cy"
-                      cachedName="UnitPrice"
-                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                      refId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input].Columns[LineTotal]"
+                      cachedDataType="numeric"
+                      cachedName="LineTotal"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[LineTotal]" />
                     <inputColumn
-                      refId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input].Columns[ProductCost]"
-                      cachedDataType="cy"
-                      cachedName="ProductCost"
-                      lineageId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output].Columns[ProductCost]" />
+                      refId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input].Columns[TotalProductCost]"
+                      cachedDataType="numeric"
+                      cachedName="TotalProductCost"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      lineageId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output].Columns[TotalProductCost]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -168,24 +172,26 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output].Columns[Profit]"
-                      dataType="cy"
+                      dataType="numeric"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output].Columns[Profit]"
                       name="Profit"
+                      precision="38"
+                      scale="6"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[UnitPrice]} - #{Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output].Columns[ProductCost]}</property>
+                          name="Expression">#{Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[LineTotal]} - #{Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output].Columns[TotalProductCost]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">UnitPrice - ProductCost</property>
+                          name="FriendlyExpression">LineTotal - TotalProductCost</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -209,6 +215,93 @@
                       refId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Sales Data\Calculate TotalProductCost"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Calculate TotalProductCost"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input].Columns[ProductCost]"
+                      cachedDataType="cy"
+                      cachedName="ProductCost"
+                      lineageId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output].Columns[ProductCost]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input].Columns[OrderQty]"
+                      cachedDataType="i2"
+                      cachedName="OrderQty"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[OrderQty]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output].Columns[TotalProductCost]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output].Columns[TotalProductCost]"
+                      name="TotalProductCost"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[OrderQty]} * #{Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output].Columns[ProductCost]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">OrderQty * ProductCost</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2826,8 +2919,10 @@ where [refTable].[AddressID] = ?</property>
                       lineageId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output].Columns[TerritoryID]" />
                     <inputColumn
                       refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Profit]"
-                      cachedDataType="cy"
+                      cachedDataType="numeric"
                       cachedName="Profit"
+                      cachedPrecision="38"
+                      cachedScale="6"
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
                       lineageId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output].Columns[Profit]" />
                     <inputColumn
@@ -3430,21 +3525,21 @@ where [refTable].[AddressID] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="75.5,0"
+              EndConnector="73.5,0"
               Start="0,0"
-              End="68,0">
+              End="66,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="68,0" />
+                    End="66,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-14.19138671875,5,96.3827734375,11.609375"
+              BoundingBox="-15.19138671875,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

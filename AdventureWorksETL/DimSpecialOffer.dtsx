@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{92A1F8AA-D6B2-4658-A7FB-9E30E3FC857A}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{44701858-E271-4219-96F3-B12A51904C55}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -45,7 +45,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{2A701036-5A61-4600-AB45-6EAE2E0C4664}"
-          SQLTask:SqlStatementSource="declare @key int&#xA;declare @description VARCHAR(255)&#xA;declare @category varchar(255)&#xA;declare @type varchar(255)&#xA;&#xA;DECLARE updatecur CURSOR FOR &#xA;SELECT st.SpecialOfferKey,st.Category,st.Description,st.Type&#xA;FROM Dim_SpecialOffer_stage_updates st&#xA;left join AdventureWorksDW.dbo.Dim_SpecialOffer dw on dw.SpecialOfferKey = st.SpecialOfferKey&#xA;WHERE &#xA; dw.Category &lt;&gt; st.Category&#xA;or  dw.Description &lt;&gt; st.Description&#xA;or  dw.Type &lt;&gt; st.Type&#xA;&#xA;&#xA;OPEN updatecur&#xA;&#xA;FETCH NEXT FROM updatecur INTO @key,@category,@description,@type; &#xA;&#xA;WHILE @@FETCH_STATUS = 0  &#xA; &#xA;BEGIN  &#xA;&#x9;&#xA;   &#x9;Update AdventureWorksDW.dbo.Dim_SpecialOffer&#xA;&#x9;set Category = @category, Description = @description, Type = @type&#xA;&#x9;where SpecialOfferKey = @key;&#xA;&#xA; &#x9;FETCH NEXT FROM updatecur INTO @key,@category,@description,@type; &#xA;END &#xA;&#xA;CLOSE updatecur  &#xA;&#xA;DEALLOCATE updatecur " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="Update dw&#xA;SET&#xA;dw.Category = st.category, dw.Description = st.description, dw.Type = st.Type&#xA;FROM AdventureWorksDW.dbo.Dim_SpecialOffer dw&#xA;LEFT JOIN StagingDW.dbo.Dim_SpecialOffer_stage_updates st on dw.SpecialOfferKey = dw.SpecialOfferKey &#xA;&#xA;Where dw.SpecialOfferKey = st.SpecialOfferKey&#xA;and (&#xA;dw.Category &lt;&gt; st.Category&#xA;or  dw.Description &lt;&gt; st.Description&#xA;or  dw.Type &lt;&gt; st.Type)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -66,13 +66,13 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Territory Extract and Transform"
+      DTS:refId="Package\Special Offer Extract and Transform"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{CC2FB193-94EC-4CE9-BB2C-0C0AE4B5017B}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Territory Extract and Transform"
+      DTS:ObjectName="Special Offer Extract and Transform"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -80,7 +80,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Territory Extract and Transform\Already Exists?"
+              refId="Package\Special Offer Extract and Transform\Already Exists?"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -136,7 +136,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]};</property>
+                  name="ParameterMap">#{Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -148,7 +148,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Territory Extract and Transform\Already Exists?.Connections[OleDbConnection]"
+                  refId="Package\Special Offer Extract and Transform\Already Exists?.Connections[OleDbConnection]"
                   connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
                   description="Connection manager used to access lookup data."
@@ -156,14 +156,14 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input]"
+                  refId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input].Columns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input].Columns[SpecialOfferKey]"
                       cachedDataType="i4"
                       cachedName="SpecialOfferKey"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]">
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -181,18 +181,18 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output]"
+                  refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Type]"
                       dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
                       length="255"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Type]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Type]"
                       name="Type"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -203,11 +203,11 @@ where [refTable].[SpecialOfferKey] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Category]"
                       dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
                       length="255"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Category]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Category]"
                       name="Category"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -218,11 +218,11 @@ where [refTable].[SpecialOfferKey] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
                       length="255"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Description]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -233,10 +233,10 @@ where [refTable].[SpecialOfferKey] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[SpecialOfferKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[SpecialOfferKey]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output].Columns[SpecialOfferKey]"
                       name="SpecialOfferKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -250,30 +250,30 @@ where [refTable].[SpecialOfferKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup No Match Output]"
+                  refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Error Output]"
+                  refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -282,7 +282,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Territory Extract and Transform\Extract Special Offers"
+              refId="Package\Special Offer Extract and Transform\Extract Special Offers"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -331,7 +331,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Territory Extract and Transform\Extract Special Offers.Connections[OleDbConnection]"
+                  refId="Package\Special Offer Extract and Transform\Extract Special Offers.Connections[OleDbConnection]"
                   connectionManagerID="{4E4DC8D3-9EE6-4E5F-AD21-844C3051AD45}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorks]"
                   description="The OLE DB runtime connection used to access the database."
@@ -339,138 +339,138 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output]"
+                  refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]"
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]"
                       name="SpecialOfferKey"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="255"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Type]"
                       length="50"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]"
                       name="Type"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Category]"
                       length="50"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]"
                       name="Category"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
                       dataType="guid"
                       name="rowguid" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
                       dataType="dbTimeStamp"
                       name="ModifiedDate" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
                       dataType="i4"
                       name="SpecialOfferID" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="255"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[DiscountPct]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[DiscountPct]"
                       dataType="cy"
                       name="DiscountPct" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Type]"
                       dataType="wstr"
                       length="50"
                       name="Type" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[Category]"
                       dataType="wstr"
                       length="50"
                       name="Category" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
                       dataType="dbTimeStamp"
                       name="StartDate" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
                       dataType="dbTimeStamp"
                       name="EndDate" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[MinQty]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[MinQty]"
                       dataType="i4"
                       name="MinQty" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[MaxQty]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].ExternalColumns[MaxQty]"
                       dataType="i4"
                       name="MaxQty" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
                       name="SpecialOfferID" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Type]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Type]"
                       name="Type" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Category]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Category]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[Category]"
                       name="Category" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -479,7 +479,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Territory Extract and Transform\Insert records"
+              refId="Package\Special Offer Extract and Transform\Insert records"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -536,7 +536,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Territory Extract and Transform\Insert records.Connections[OleDbConnection]"
+                  refId="Package\Special Offer Extract and Transform\Insert records.Connections[OleDbConnection]"
                   connectionManagerID="{0B8749D6-A7DB-4D28-8408-E43B59EE8238}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.AdventureWorksDW]"
                   description="The OLE DB runtime connection used to access the database."
@@ -544,58 +544,58 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input]"
+                  refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[SpecialOfferKey]"
                       cachedDataType="i4"
                       cachedName="SpecialOfferKey"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Type]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Type"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].Columns[Category]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Category"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
                       dataType="i4"
                       name="SpecialOfferKey" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="255"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
                       dataType="wstr"
                       length="255"
                       name="Category" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
                       dataType="wstr"
                       length="255"
                       name="Type" />
@@ -604,22 +604,22 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Territory Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Special Offer Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Special Offer Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Special Offer Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Special Offer Extract and Transform\Insert records.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -628,7 +628,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Territory Extract and Transform\staging updates"
+              refId="Package\Special Offer Extract and Transform\staging updates"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -685,7 +685,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Territory Extract and Transform\staging updates.Connections[OleDbConnection]"
+                  refId="Package\Special Offer Extract and Transform\staging updates.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[LocalHost.StagingDW]"
                   connectionManagerRefId="Package.ConnectionManagers[LocalHost.StagingDW]"
                   description="The OLE DB runtime connection used to access the database."
@@ -693,58 +693,58 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input]"
+                  refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[SpecialOfferKey]"
                       cachedDataType="i4"
                       cachedName="SpecialOfferKey"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[SpecialOfferKey]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Description]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Category]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Category]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Category"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Category]" />
                     <inputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Type]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].Columns[Type]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Type"
-                      externalMetadataColumnId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
-                      lineageId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]" />
+                      externalMetadataColumnId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output].Columns[Type]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferKey]"
                       dataType="i4"
                       name="SpecialOfferKey" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="255"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Category]"
                       dataType="wstr"
                       length="255"
                       name="Category" />
                     <externalMetadataColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
                       dataType="wstr"
                       length="255"
                       name="Type" />
@@ -753,22 +753,22 @@ where [refTable].[SpecialOfferKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Territory Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Special Offer Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Special Offer Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Territory Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Special Offer Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Territory Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Special Offer Extract and Transform\staging updates.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -779,20 +779,20 @@ where [refTable].[SpecialOfferKey] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\Territory Extract and Transform.Paths[Lookup Match Output]"
-              endId="Package\Territory Extract and Transform\staging updates.Inputs[OLE DB Destination Input]"
+              refId="Package\Special Offer Extract and Transform.Paths[Lookup Match Output]"
+              endId="Package\Special Offer Extract and Transform\staging updates.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
-              startId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup Match Output]" />
+              startId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Territory Extract and Transform.Paths[New Items]"
-              endId="Package\Territory Extract and Transform\Insert records.Inputs[OLE DB Destination Input]"
+              refId="Package\Special Offer Extract and Transform.Paths[New Items]"
+              endId="Package\Special Offer Extract and Transform\Insert records.Inputs[OLE DB Destination Input]"
               name="New Items"
-              startId="Package\Territory Extract and Transform\Already Exists?.Outputs[Lookup No Match Output]" />
+              startId="Package\Special Offer Extract and Transform\Already Exists?.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\Territory Extract and Transform.Paths[OLE DB Source Output]"
-              endId="Package\Territory Extract and Transform\Already Exists?.Inputs[Lookup Input]"
+              refId="Package\Special Offer Extract and Transform.Paths[OLE DB Source Output]"
+              endId="Package\Special Offer Extract and Transform\Already Exists?.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\Territory Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output]" />
+              startId="Package\Special Offer Extract and Transform\Extract Special Offers.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -806,12 +806,12 @@ where [refTable].[SpecialOfferKey] = ?</property>
       DTS:From="Package\Prepare tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Territory Extract and Transform" />
+      DTS:To="Package\Special Offer Extract and Transform" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{209982E3-D25D-4E63-88EE-067161166215}"
-      DTS:From="Package\Territory Extract and Transform"
+      DTS:From="Package\Special Offer Extract and Transform"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Load" />
@@ -837,8 +837,8 @@ where [refTable].[SpecialOfferKey] = ?</property>
           Id="Package\Prepare tables"
           TopLeft="240,60" />
         <NodeLayout
-          Size="228,42"
-          Id="Package\Territory Extract and Transform"
+          Size="248,42"
+          Id="Package\Special Offer Extract and Transform"
           TopLeft="60,157" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
@@ -846,9 +846,9 @@ where [refTable].[SpecialOfferKey] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-147.5,55"
+              EndConnector="-137.5,55"
               Start="0,0"
-              End="-147.5,47.5">
+              End="-137.5,47.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -859,13 +859,13 @@ where [refTable].[SpecialOfferKey] = ?</property>
                     Point2="0,27.5"
                     Point3="-4,27.5" />
                   <mssgle:LineSegment
-                    End="-143.5,27.5" />
+                    End="-133.5,27.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-143.5,27.5"
-                    Point2="-147.5,27.5"
-                    Point3="-147.5,31.5" />
+                    Point1="-133.5,27.5"
+                    Point2="-137.5,27.5"
+                    Point3="-137.5,31.5" />
                   <mssgle:LineSegment
-                    End="-147.5,47.5" />
+                    End="-137.5,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -876,18 +876,30 @@ where [refTable].[SpecialOfferKey] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="170.25,199">
+          TopLeft="184,199">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,67"
+              EndConnector="-17.5,67"
               Start="0,0"
-              End="0,59.5">
+              End="-17.5,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,59.5" />
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.5,33.5"
+                    Point2="-17.5,33.5"
+                    Point3="-17.5,37.5" />
+                  <mssgle:LineSegment
+                    End="-17.5,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -900,28 +912,28 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Territory Extract and Transform">
+    design-time-name="Package\Special Offer Extract and Transform">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="180,42"
-          Id="Package\Territory Extract and Transform\Extract Special Offers"
+          Id="Package\Special Offer Extract and Transform\Extract Special Offers"
           TopLeft="91.5,54.5" />
         <NodeLayout
           Size="171,42"
-          Id="Package\Territory Extract and Transform\Insert records"
+          Id="Package\Special Offer Extract and Transform\Insert records"
           TopLeft="278.5,394.5" />
         <NodeLayout
           Size="149,42"
-          Id="Package\Territory Extract and Transform\Already Exists?"
+          Id="Package\Special Offer Extract and Transform\Already Exists?"
           TopLeft="461,234" />
         <NodeLayout
           Size="154,42"
-          Id="Package\Territory Extract and Transform\staging updates"
+          Id="Package\Special Offer Extract and Transform\staging updates"
           TopLeft="567,398" />
         <EdgeLayout
-          Id="Package\Territory Extract and Transform.Paths[New Items]"
+          Id="Package\Special Offer Extract and Transform.Paths[New Items]"
           TopLeft="535.5,276">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -957,7 +969,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Territory Extract and Transform.Paths[Lookup Match Output]"
+          Id="Package\Special Offer Extract and Transform.Paths[Lookup Match Output]"
           TopLeft="559,276">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -993,7 +1005,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Territory Extract and Transform.Paths[OLE DB Source Output]"
+          Id="Package\Special Offer Extract and Transform.Paths[OLE DB Source Output]"
           TopLeft="181.5,96.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1030,7 +1042,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Extract Special Offers">
+    design-time-name="Package\Special Offer Extract and Transform\Extract Special Offers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1043,7 +1055,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Insert records">
+    design-time-name="Package\Special Offer Extract and Transform\Insert records">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1056,7 +1068,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\Already Exists?">
+    design-time-name="Package\Special Offer Extract and Transform\Already Exists?">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1079,7 +1091,7 @@ where [refTable].[SpecialOfferKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Territory Extract and Transform\staging updates">
+    design-time-name="Package\Special Offer Extract and Transform\staging updates">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

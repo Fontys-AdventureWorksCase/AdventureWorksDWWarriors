@@ -48,8 +48,8 @@ CREATE TABLE [dbo].[Dim_Date] (
 
 SET NOCOUNT ON
 
-DECLARE @CurrentDate DATE = '2010-01-01'
-DECLARE @EndDate DATE = '2022-12-31'
+DECLARE @CurrentDate DATE = '2011-05-01'
+DECLARE @EndDate DATE = '2014-08-01'
 
 WHILE @CurrentDate < @EndDate
 BEGIN
