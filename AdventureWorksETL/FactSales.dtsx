@@ -13,8 +13,8 @@
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{313EA394-A78F-4A43-AD4A-2BB477A39A2D}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{136353DA-A3CC-42B7-A4D6-EF653E4409D6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2932,6 +2932,22 @@ where [refTable].[AddressID] = ?</property>
                       cachedName="CurrencyCode"
                       externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyKey]"
                       lineageId="Package\Extract Sales Data\Replace currency null with USD.Outputs[Derived Column Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineTotal]"
+                      cachedDataType="numeric"
+                      cachedName="LineTotal"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalProductPrice]"
+                      lineageId="Package\Extract Sales Data\Extract SalesOrderDetail Data.Outputs[OLE DB Source Output].Columns[LineTotal]" />
+                    <inputColumn
+                      refId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalProductCost]"
+                      cachedDataType="numeric"
+                      cachedName="TotalProductCost"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Extract Sales Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalProductCost]"
+                      lineageId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output].Columns[TotalProductCost]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3204,6 +3220,21 @@ where [refTable].[AddressID] = ?</property>
               name="Derived Column Output"
               startId="Package\Extract Sales Data\Create Date Keys.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Extract Sales Data.Paths[Derived Column Output4]"
+              endId="Package\Extract Sales Data\Filter out negative profit.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Derived Column Output3]"
+              endId="Package\Extract Sales Data\Lookup SalesType Key.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Sales Data\Add SalesType.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Derived Column Output5]"
+              endId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Sales Data\Calculate TotalProductCost.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Extract Sales Data.Paths[Derived Column Output1]"
               endId="Package\Extract Sales Data\Extract Product Cost.Inputs[Lookup Input]"
               name="Derived Column Output"
@@ -3214,70 +3245,60 @@ where [refTable].[AddressID] = ?</property>
               name="Derived Column Output"
               startId="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales).Outputs[Derived Column Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Derived Column Output3]"
-              endId="Package\Extract Sales Data\Lookup SalesType Key.Inputs[Lookup Input]"
-              name="Derived Column Output"
-              startId="Package\Extract Sales Data\Add SalesType.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Derived Column Output4]"
-              endId="Package\Extract Sales Data\Filter out negative profit.Inputs[Conditional Split Input]"
-              name="Derived Column Output"
-              startId="Package\Extract Sales Data\Calculate profit.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output10]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output]"
               endId="Package\Extract Sales Data\Extract currency rate.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output9]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output1]"
               endId="Package\Extract Sales Data\Create Date Keys.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Lookup ShipTo Location Key.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output8]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output2]"
               endId="Package\Extract Sales Data\Extract currency.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Extract currency rate.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output7]"
-              endId="Package\Extract Sales Data\Calculate profit.Inputs[Derived Column Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output6]"
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output3]"
               endId="Package\Extract Sales Data\Add SalesType.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Lookup SalesPerson Key.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output10]"
+              endId="Package\Extract Sales Data\Calculate TotalProductCost.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Extract Product Cost.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output5]"
+              endId="Package\Extract Sales Data\Lookup ShipTo Location Key.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup ShipTo PostalCode.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output6]"
+              endId="Package\Extract Sales Data\Lookup ShipTo PostalCode.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup BillTo Location key.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output7]"
+              endId="Package\Extract Sales Data\Lookup BillTo Location key.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup BillTo PostalCode.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output8]"
+              endId="Package\Extract Sales Data\Lookup SalesPerson Key.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup Product Key.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Sales Data.Paths[Lookup Match Output9]"
+              endId="Package\Extract Sales Data\Lookup BillTo PostalCode.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Sales Data\Lookup SalesType Key.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Extract Sales Data.Paths[Lookup Match Output4]"
               endId="Package\Extract Sales Data\Replace currency null with USD.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Extract Sales Data\Extract currency.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output3]"
-              endId="Package\Extract Sales Data\Lookup ShipTo Location Key.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup ShipTo PostalCode.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output2]"
-              endId="Package\Extract Sales Data\Lookup ShipTo PostalCode.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup BillTo Location key.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output1]"
-              endId="Package\Extract Sales Data\Lookup BillTo Location key.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup BillTo PostalCode.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output]"
-              endId="Package\Extract Sales Data\Lookup SalesPerson Key.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup Product Key.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Extract Sales Data.Paths[Lookup Match Output5]"
-              endId="Package\Extract Sales Data\Lookup BillTo PostalCode.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Extract Sales Data\Lookup SalesType Key.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Extract Sales Data.Paths[OLE DB Source Output]"
               endId="Package\Extract Sales Data\Extract SalesOrderHeader Data.Inputs[Lookup Input]"
@@ -3368,89 +3389,121 @@ where [refTable].[AddressID] = ?</property>
         <NodeLayout
           Size="175,42"
           Id="Package\Extract Sales Data\Extract Product Cost"
-          TopLeft="55.2142857142857,239" />
-        <NodeLayout
-          Size="225,42"
-          Id="Package\Extract Sales Data\Extract SalesOrderHeader Data"
-          TopLeft="336.75,12.5" />
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Extract Sales Data\Extract currency rate"
-          TopLeft="57.4285714285714,164.285714285714" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Extract Sales Data\Lookup BillTo PostalCode"
-          TopLeft="42.4642857142857,488.75" />
+          TopLeft="116.5,516.5" />
         <NodeLayout
           Size="160,42"
           Id="Package\Extract Sales Data\Create Date Keys"
-          TopLeft="44.0476190476192,576.666666666667" />
-        <NodeLayout
-          Size="184,42"
-          Id="Package\Extract Sales Data\Lookup SalesType Key"
-          TopLeft="714.464285714286,379.75" />
-        <NodeLayout
-          Size="218,42"
-          Id="Package\Extract Sales Data\Extract SalesOrderDetail Data"
-          TopLeft="51.25,9.5" />
-        <NodeLayout
-          Size="193,42"
-          Id="Package\Extract Sales Data\Lookup SalesPerson Key"
-          TopLeft="267.214285714286,387.75" />
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Extract Sales Data\Lookup Product Key"
-          TopLeft="47.4642857142858,382.5" />
-        <NodeLayout
-          Size="212,42"
-          Id="Package\Extract Sales Data\Lookup ShipTo Location Key"
-          TopLeft="823.547619047619,474.666666666667" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Extract Sales Data\Extract currency"
-          TopLeft="318.428571428571,168.571428571429" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Extract Sales Data\Calculate profit"
-          TopLeft="305.714285714286,245.75" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Extract Sales Data\OLE DB Destination"
-          TopLeft="40.9642857142857,653.5" />
+          TopLeft="124,1739.5" />
         <NodeLayout
           Size="397,42"
           Id="Package\Extract Sales Data\Replace NULL in column SalesPersonID by -1 (eg for internet sales)"
-          TopLeft="49.4642857142857,312.75" />
+          TopLeft="5.50000000000009,821.5" />
         <NodeLayout
-          Size="204,42"
-          Id="Package\Extract Sales Data\Lookup ShipTo PostalCode"
-          TopLeft="578.797619047619,483.916666666667" />
+          Size="225,42"
+          Id="Package\Extract Sales Data\Extract SalesOrderHeader Data"
+          TopLeft="91.5,107.5" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Extract Sales Data\Lookup ShipTo Location Key"
+          TopLeft="98.0000000000002,1637.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Extract Sales Data\Lookup Product Key"
+          TopLeft="117.5,923.5" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Extract Sales Data\Lookup SalesType Key"
+          TopLeft="112,1229.5" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Extract Sales Data\Extract SalesOrderDetail Data"
+          TopLeft="95,5.5" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Extract Sales Data\Calculate TotalProductCost"
+          TopLeft="299.5,570.5" />
         <NodeLayout
           Size="226,42"
           Id="Package\Extract Sales Data\Replace currency null with USD"
-          TopLeft="611.714285714286,161.571428571429" />
+          TopLeft="91.0000000000001,413.5" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Extract Sales Data\Lookup ShipTo PostalCode"
+          TopLeft="102,1535.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract Sales Data\Lookup SalesPerson Key"
+          TopLeft="107.5,1025.5" />
         <NodeLayout
           Size="204,42"
           Id="Package\Extract Sales Data\Lookup BillTo Location key"
-          TopLeft="332.79761904762,485.083333333333" />
+          TopLeft="102,1433.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Extract Sales Data\Extract currency"
+          TopLeft="126.5,311.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Extract Sales Data\Calculate profit"
+          TopLeft="129,617.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Extract Sales Data\Filter out negative profit"
+          TopLeft="107.5,719.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Extract Sales Data\OLE DB Destination"
+          TopLeft="118.5,1841.5" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Extract Sales Data\Extract currency rate"
+          TopLeft="115.5,209.5" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Extract Sales Data\Lookup BillTo PostalCode"
+          TopLeft="105.5,1331.5" />
         <NodeLayout
           Size="148,42"
           Id="Package\Extract Sales Data\Add SalesType"
-          TopLeft="511.464285714286,383.75" />
+          TopLeft="130,1127.5" />
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[OLE DB Source Output]"
-          TopLeft="269.25,32">
+          Id="Package\Extract Sales Data.Paths[Positive profit]"
+          TopLeft="204,761.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="67.5,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="60,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="60,0" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.65638671875,20.4208984375,61.3127734375,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[OLE DB Source Output]"
+          TopLeft="204,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3461,294 +3514,280 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output9]"
-          TopLeft="929.547619047619,516.666666666667">
+          TopLeft="204,1271.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-805.5,60.0000000000001"
+              EndConnector="0,60"
               Start="0,0"
-              End="-805.5,52.5000000000001">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-801.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-801.5,30"
-                    Point2="-805.5,30"
-                    Point3="-805.5,34" />
-                  <mssgle:LineSegment
-                    End="-805.5,52.5000000000001" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-450.94138671875,35,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output8]"
-          TopLeft="234.428571428571,187.428571428571">
+          TopLeft="204,965.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="84.0000000000001,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="76.5000000000001,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="76.5000000000001,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-9.94138671874996,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output7]"
-          TopLeft="230.214285714286,263.375">
+          TopLeft="204,1373.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="73.5,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="66,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="66,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-15.19138671875,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output6]"
-          TopLeft="460.214285714286,406.75">
+          TopLeft="204,1475.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.25,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="43.75,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="43.75,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-26.31638671875,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output5]"
-          TopLeft="806.464285714286,421.75">
+          TopLeft="204,1577.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-665.5,67"
+              EndConnector="0,60"
               Start="0,0"
-              End="-665.5,59.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29.5"
-                    Point2="0,33.5"
-                    Point3="-4,33.5" />
-                  <mssgle:LineSegment
-                    End="-661.5,33.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-661.5,33.5"
-                    Point2="-665.5,33.5"
-                    Point3="-665.5,37.5" />
-                  <mssgle:LineSegment
-                    End="-665.5,59.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-380.94138671875,38.5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output4]"
-          TopLeft="473.428571428571,186.071428571429">
+          TopLeft="204,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="138.285714285714,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="130.785714285714,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="130.785714285714,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="17.2014704241071,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output3]"
-          TopLeft="782.797619047619,504.916666666667">
+          TopLeft="204,1067.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="40.75,-9.24999999999994"
+              EndConnector="0,60"
               Start="0,0"
-              End="33.25,-9.24999999999994">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="16.375,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="16.375,0"
-                    Point2="20.375,0"
-                    Point3="20.375,-4" />
-                  <mssgle:LineSegment
-                    End="20.375,-5.24999999999994" />
-                  <mssgle:CubicBezierSegment
-                    Point1="20.375,-5.24999999999994"
-                    Point2="20.375,-9.24999999999994"
-                    Point3="24.375,-9.24999999999994" />
-                  <mssgle:LineSegment
-                    End="33.25,-9.24999999999994" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-27.81638671875,1,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output2]"
-          TopLeft="536.79761904762,505.5">
+          TopLeft="204,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="41.9999999999999,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="34.4999999999999,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="34.4999999999999,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-30.9413867187501,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output1]"
-          TopLeft="239.464285714286,507.916666666667">
+          TopLeft="204,1679.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="93.333333333334,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="85.833333333334,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="85.833333333334,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-5.274720052083,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output]"
-          TopLeft="220.464285714286,406.125">
+          TopLeft="204,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="46.7499999999999,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="39.2499999999999,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="39.2499999999999,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-28.5663867187501,5,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Derived Column Output3]"
-          TopLeft="659.464285714286,402.75">
+          Id="Package\Extract Sales Data.Paths[Derived Column Output4]"
+          TopLeft="204,659.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="55,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="47.5,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="47.5,0" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Sales Data.Paths[Derived Column Output3]"
+          TopLeft="204,1169.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3759,30 +3798,18 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output2]"
-          TopLeft="247.964285714286,354.75">
+          TopLeft="204,863.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-114,27.75"
+              EndConnector="0,60"
               Start="0,0"
-              End="-114,20.25">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.875" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,9.875"
-                    Point2="0,13.875"
-                    Point3="-4,13.875" />
-                  <mssgle:LineSegment
-                    End="-110,13.875" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-110,13.875"
-                    Point2="-114,13.875"
-                    Point3="-114,17.875" />
-                  <mssgle:LineSegment
-                    End="-114,20.25" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3793,30 +3820,18 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output1]"
-          TopLeft="724.714285714286,203.571428571429">
+          TopLeft="204,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-582,35.4285714285714"
+              EndConnector="0,61"
               Start="0,0"
-              End="-582,27.9285714285714">
+              End="0,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.7142857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.7142857142857"
-                    Point2="0,17.7142857142857"
-                    Point3="-4,17.7142857142857" />
-                  <mssgle:LineSegment
-                    End="-578,17.7142857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-578,17.7142857142857"
-                    Point2="-582,17.7142857142857"
-                    Point3="-582,21.7142857142857" />
-                  <mssgle:LineSegment
-                    End="-582,27.9285714285714" />
+                    End="0,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3827,18 +3842,18 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Derived Column Output]"
-          TopLeft="125.255952380953,618.666666666667">
+          TopLeft="204,1781.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,34.833333333333"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,27.333333333333">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.333333333333" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3849,100 +3864,60 @@ where [refTable].[AddressID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Extract Sales Data.Paths[Lookup Match Output10]"
-          TopLeft="449.25,54.5">
+          TopLeft="291.5,537.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-303.321428571429,109.785714285714"
+              EndConnector="110.5,33"
               Start="0,0"
-              End="-303.321428571429,102.285714285714">
+              End="110.5,25.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.8928571428571" />
+                    End="106.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,50.8928571428571"
-                    Point2="0,54.8928571428571"
-                    Point3="-4,54.8928571428571" />
+                    Point1="106.5,0"
+                    Point2="110.5,0"
+                    Point3="110.5,4" />
                   <mssgle:LineSegment
-                    End="-299.321428571429,54.8928571428571" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-299.321428571429,54.8928571428571"
-                    Point2="-303.321428571429,54.8928571428571"
-                    Point3="-303.321428571429,58.8928571428571" />
-                  <mssgle:LineSegment
-                    End="-303.321428571429,102.285714285714" />
+                    End="110.5,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-199.852101004464,59.8928571428571,96.3827734375,11.609375"
+              BoundingBox="62.3086132812502,-17.609375,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="193,42"
-          Id="Package\Extract Sales Data\Filter out negative profit"
-          TopLeft="585.714285714286,247.142857142857" />
         <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Derived Column Output4]"
-          TopLeft="455.714285714286,267.446428571429">
+          Id="Package\Extract Sales Data.Paths[Derived Column Output5]"
+          TopLeft="299.5,591.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="130,0"
+              EndConnector="-95.5000000000002,26"
               Start="0,0"
-              End="122.5,0">
+              End="-95.5000000000002,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="122.5,0" />
+                    End="-91.5000000000002,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.5000000000002,0"
+                    Point2="-95.5000000000002,0"
+                    Point3="-95.5000000000002,4" />
+                  <mssgle:LineSegment
+                    End="-95.5000000000002,18.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Extract Sales Data.Paths[Positive profit]"
-          TopLeft="682.214285714286,289.142857142857">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-434.25,23.6071428571428"
-              Start="0,0"
-              End="-434.25,16.1071428571428">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,7.80357142857142" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.80357142857142"
-                    Point2="0,11.8035714285714"
-                    Point3="-4,11.8035714285714" />
-                  <mssgle:LineSegment
-                    End="-430.25,11.8035714285714" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-430.25,11.8035714285714"
-                    Point2="-434.25,11.8035714285714"
-                    Point3="-434.25,15.8035714285714" />
-                  <mssgle:LineSegment
-                    End="-434.25,16.1071428571428" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-247.78138671875,16.8035714285714,61.3127734375,11.658203125"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3995,7 +3970,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Extract currency rate">
+    design-time-name="Package\Extract Sales Data\Lookup ShipTo Location Key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4005,7 +3980,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[Sales].[CurrencyRate]</Value>
+          type="q3:string">[dbo].[Dim_Location]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -4018,7 +3993,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup BillTo PostalCode">
+    design-time-name="Package\Extract Sales Data\Lookup Product Key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4028,7 +4003,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[Person].[Address]</Value>
+          type="q3:string">[dbo].[Dim_Product]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -4077,6 +4052,29 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Person].[Address]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Extract Sales Data\Lookup SalesPerson Key">
     <Properties>
       <Property>
@@ -4100,30 +4098,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup Product Key">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Dim_Product]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup ShipTo Location Key">
+    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4182,7 +4157,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup ShipTo PostalCode">
+    design-time-name="Package\Extract Sales Data\Extract currency rate">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4192,7 +4167,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[Person].[Address]</Value>
+          type="q3:string">[Sales].[CurrencyRate]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -4205,7 +4180,7 @@ where [refTable].[AddressID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract Sales Data\Lookup BillTo Location key">
+    design-time-name="Package\Extract Sales Data\Lookup BillTo PostalCode">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -4215,7 +4190,7 @@ where [refTable].[AddressID] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[Dim_Location]</Value>
+          type="q3:string">[Person].[Address]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
